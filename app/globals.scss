@@ -1,0 +1,131 @@
+@use "../ui/styles/Variables.scss" as *;
+@use "../ui/styles/font-faces.scss" as *;
+@use "../ui/styles/font-size-standard.scss" as *;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html,
+body {
+  max-width: 100vw;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: gray;
+  position: relative;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.fa-icon {
+  font-size: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+.btn {
+  @include flex-center();
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: relative;
+  border: none;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  background-color: inherit;
+  &::before {
+    top: 0;
+    position: absolute;
+    content: "";
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    opacity: 0.1;
+    z-index: 1;
+  }
+}
+
+/* external navigation */
+
+.external-nav-ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  [data-aos="slide-up"] {
+    transition-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
+  li {
+    list-style: none;
+    width: 50px;
+    height: 50px;
+    @include flex-center();
+    a {
+      $size: 2rem;
+      .fa-icon {
+        background-color: grey;
+        height: $size;
+        width: $size;
+      }
+    }
+    &:hover {
+      a .fa-icon {
+        transition: all 0.25s;
+        $size: 3rem;
+        height: $size;
+        width: $size;
+      }
+    }
+  }
+  .facebook .fa-icon:hover {
+    background-image: linear-gradient(90deg, #1755ff, #4117ff);
+  }
+  .instagram .fa-icon:hover {
+    background-image: linear-gradient(90deg, #ee0a21, #de20a2, #1d5eca);
+  }
+  .telegram .fa-icon:hover {
+    background-image: linear-gradient(90deg, #20a8de, #0080ff);
+  }
+}
+
+
+// Tok svg
+
+.tok {
+  -webkit-mask: url("/photos/tok.svg") center / cover no-repeat;
+  mask: url("/photos/tok.svg") center / contain no-repeat;
+  background-image: conic-gradient(from 60deg, #20df25, #1c5ecb, #ff0101);
+}
+
+// H-1

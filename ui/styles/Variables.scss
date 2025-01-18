@@ -1,0 +1,52 @@
+// Variables
+
+:root {
+  --vh-height: 0px;
+  --responsive-operator: 0;
+  --main-color: #333;
+  --bottom-top: 20px;
+  --height: 60vw;
+  --services-color-main: any;
+  --services-color-sub: any;
+  --github-overlay-height: any;
+  --responsive-operator: 0;
+}
+
+$rainbow_bg: linear-gradient(
+  -45deg,
+  #ee0a21 20%,
+  hsl(60, 95%, 49%),
+  #20de26,
+  #0004ff
+);
+
+// Mixin
+
+@mixin apperance {
+  outline: none;
+  border: none;
+}
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-between {
+  @include flex-center();
+  justify-content: space-between;
+}
+@mixin pseudo {
+  position: absolute;
+  content: "";
+}
+@mixin absolute-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin blindColor {
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,170 @@
+@use "../../styles/font-faces.scss" as *;
+@use "../../styles/Variables.scss" as *;
+
+// Hero
+
+.hero {
+  color: white;
+  cursor: pointer;
+  h1 {
+    font-family: var(--font-blackjack);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+}
+
+// Logo
+
+.logo-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 15px;
+  .logo {
+    height: 45px;
+    width: 45px;
+  }
+}
+
+// Carousel
+
+.carousel-container {
+  margin: auto 0;
+  color: white;
+  z-index: 2;
+  text-align: center;
+  position: relative;
+  @include flex-center();
+  flex-direction: column;
+  justify-content: space-between;
+
+  ul {
+    list-style: none;
+    display: grid;
+    grid-template-rows: 1fr;
+    align-self: flex-start;
+    li {
+      @include flex-center();
+      flex-direction: column;
+      width: 100%;
+      h3 {
+        font-size: 30px;
+        margin: auto 60px;
+      }
+      p {
+        margin: 10px 60px 0;
+        font-weight: 550;
+        width: 70%;
+        margin: 0 auto;
+      }
+    }
+  }
+  .btn {
+    @include apperance();
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.512);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    @include flex-center();
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    background-color: transparent !important;
+    transition: color 0.5s;
+    &:hover {
+      color: rgb(255, 255, 255);
+    }
+    &.next {
+      right: 1%;
+    }
+    &.prev {
+      left: 1%;
+    }
+  }
+  .navigators {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 200px;
+    position: relative;
+    height: 60px;
+    margin-top: 0px;
+    span {
+      display: block;
+      width: 8px;
+      height: 8px;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 8px;
+      position: relative;
+      cursor: pointer;
+      &::before {
+        position: absolute;
+        content: "";
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        border-radius: 50%;
+        width: 0%;
+        height: 0%;
+        transition: height 0.3s, width 0.3s;
+      }
+      &.active::before {
+        width: 12px;
+        height: 12px;
+        transition: height 0.5s, width 0.5s;
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .carousel-container {
+    .btn {
+      &.next {
+        display: none;
+      }
+      &.prev {
+        display: none;
+      }
+    }
+  }
+}
+// To Top
+
+.to-top-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  .to-top {
+    border-radius: 15px;
+    background-color: #ffffff;
+    cursor: pointer;
+    opacity: 0.5;
+    box-shadow: 0.5px 0.5px 10px #38383b25, 0px -0.5px 10px #38383b26;
+    transition: opacity 0.5s;
+
+    &:hover {
+      opacity: 1;
+    }
+    .fa-icon {
+      color: var(--main-color);
+      font-weight: 900;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+// Overlay
+
+.overlay {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}

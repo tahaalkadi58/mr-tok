@@ -1,0 +1,50 @@
+import React from "react";
+import { Class_List_Item } from "@/lib/utils/Class_list_item";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faInstagram,
+  faTelegram,
+  IconDefinition,
+} from "@fortawesome/free-brands-svg-icons";
+import styles from "./Main.module.scss";
+import GradientIcon from "../shared/GradientIcon";
+import clsx from "clsx";
+
+export default function ExternalLink() {
+  const list_item_components = list_item.map(({ name, href, id, icon }, i) => {
+    const key = `${name}-${id}`;
+    return (
+      <li
+        className={`${name} social`}
+        key={key}
+        id={key}
+        data-aos="slide-up"
+        data-aos-offset={200 + 100 * i}
+        data-aos-delay={i * 200}
+        data-aos-duration="1000"
+        data-aos-easing="cubic-bezier(0.6, -0.28, 0.735, 0.045)"
+        data-aos-once="true"
+        data-aos-anchor-placement="top-bottom"
+      >
+        <a href={href} target="_blank">
+          <GradientIcon
+            className={clsx(styles["fa-icon"], "fa-icon")}
+            faIcon={icon as IconDefinition}
+          />
+        </a>
+      </li>
+    );
+  });
+  return (
+    <ul className={clsx(styles["external-nav-ul"], "external-nav-ul")}>
+      {list_item_components}
+    </ul>
+  );
+}
+
+export const list_item = [
+  new Class_List_Item("facebook", "https://www.facebook.com", faFacebook),
+  new Class_List_Item("instagram", "https://www.instagram.com", faInstagram),
+  new Class_List_Item("telegram", "https://www.telegram.com", faTelegram),
+];

@@ -1,0 +1,82 @@
+@use "../../styles//Variables.scss" as *;
+.about-me {
+  min-height: 60vh;
+  background-color: #333;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 33vw 25vw;
+  grid-template-rows: auto 45vw;
+  justify-items: center;
+  justify-content: space-evenly;
+  align-content: center;
+  row-gap: 6rem;
+  padding: 3rem;
+  color: white;
+  column-gap: 2rem;
+  row-gap: 3rem;
+  font-family: var(--font-montero);
+  h1 {
+    grid-column: 1 / 3;
+    font-size: 3rem;
+    font-family: var(--font-blackjack);
+  }
+  .about-text {
+    grid-area: 2 / 1 / 3 / 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: flex-start;
+    h3 {
+      text-align: justify;
+      justify-self: flex-start;
+      font-weight: 400;
+      .strong {
+        display: block;
+        font-weight: bold;
+        padding-bottom: 10px;
+      }
+    }
+    .about-widget {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+    }
+  }
+  .about-image {
+    grid-area: 2 / 2 / 3 / 3;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    img {
+      width: clamp(100px, 50vw, 450px) !important;
+      height: auto;
+      border-radius: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .about-me {
+    grid-template-columns: 1fr;
+    grid-template-rows: 12vh auto 1fr;
+    align-items: center;
+    align-content: flex-start;
+    h1 {
+      grid-area: 1 / 1 / 2 / 2;
+    }
+    .about-image {
+      grid-area: 2 / 1 / 2 / 2;
+    }
+    .about-text {
+      grid-area: 3 / 1 / 4 / 2;
+      grid-template-rows: 1fr auto auto;
+      row-gap: 3rem;
+      h3 {
+        text-align: center;
+      }
+    }
+  }
+}
