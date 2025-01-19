@@ -6,6 +6,7 @@ import clsx from "clsx";
 import styles from "./Main.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GradientIcon from "../shared/GradientIcon";
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 const FooterInfoWidget: FunctionComponent = () => {
   const list_item_components = list_item.map(({ name, href, id, icon }, i) => {
     const key = `${name}-${id}`;
@@ -16,7 +17,10 @@ const FooterInfoWidget: FunctionComponent = () => {
         id={key}
       >
         <a href={href} target="_blank">
-          <GradientIcon className={clsx(styles["fa-icon"], 'fa-icon')} faIcon={icon} />
+          <GradientIcon
+            className={clsx(styles["fa-icon"], "fa-icon")}
+            faIcon={icon as IconDefinition}
+          />
         </a>
       </li>
     );
@@ -29,14 +33,14 @@ const FooterInfoWidget: FunctionComponent = () => {
       </div>
       <div className={styles["footer-text"]}>
         <p>
-          Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do
-          eiusmod tempor incididuntut consec tetur adipisicing elit,Lorem ipsum
-          dolor sit amet.
+          Hello, I am Freelance Full Stack Developer and Graphic Designer,
+          combining my technical skills with creative design expertise to
+          deliver innovative solutions.
         </p>
       </div>
       <div className={styles["footer-social-icon"]}>
         <span>Follow us</span>
-        <ul className={'external-nav-ul'}>{list_item_components}</ul>
+        <ul className={"external-nav-ul"}>{list_item_components}</ul>
       </div>
     </div>
   );

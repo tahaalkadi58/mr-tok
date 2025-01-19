@@ -1,5 +1,5 @@
 @use "../../styles/Variables.scss" as *;
-@use "../../styles/font-faces.scss" as *;
+// @use"../../styles/font-faces.scss" as *;
 
 section.services {
   $sub_title_size: 2rem;
@@ -242,9 +242,9 @@ section.services {
             color: var(--services-color-main);
           }
         }
-       p {
-        width: calc(var(--base) * 30px);
-       }
+        p {
+          width: calc(var(--base) * 30px);
+        }
       }
     }
   }

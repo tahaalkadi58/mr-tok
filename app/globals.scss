@@ -5,14 +5,29 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-recharge: "Recharge", sans-serif;
+  --font-montero: "Montero", sans-serif;
+  --font-blackjack: "Blackjack", sans-serif;
+  --font-monotone: "Monotone", sans-serif;
+  --font-baysan: "Baysan", sans-serif;
+  --font-lobster: "Lobster", cursive;
+  --vh-height: 0px;
+  --responsive-operator: 0;
+  --main-color: #333;
+  --bottom-top: 20px;
+  --height: 60vw;
+  --services-color-main: any;
+  --services-color-sub: any;
+  --github-overlay-height: any;
+  --responsive-operator: 0;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 html,
 body {
@@ -119,7 +134,6 @@ a {
   }
 }
 
-
 // Tok svg
 
 .tok {
@@ -129,3 +143,11 @@ a {
 }
 
 // H-1
+
+.our-works {
+  .projects-type-links {
+    .type-link.active {
+      opacity: 1;
+    }
+  }
+}

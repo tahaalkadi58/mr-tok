@@ -38,9 +38,13 @@ const OurWorks: FunctionComponent = () => {
   const ProjectsTypesLinks = Object.keys(projectByTypes).map((type, i) => (
     <li
       key={type}
-      onClick={() => {
+      id={`link-${i}`}
+      onClick={(e) => {
         currentTypeSetter(type);
         setCurrentIndex(i);
+        e.currentTarget.id === `link-${i}`
+          ? e.currentTarget.classList.add("active")
+          : e.currentTarget.classList.remove("active");
       }}
       className={clsx(
         type === currentType ? "active" : "",
