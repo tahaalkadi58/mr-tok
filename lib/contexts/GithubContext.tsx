@@ -15,7 +15,7 @@ export const RepoContext = createContext<{
   repos: [],
   loading: true,
   error: "",
-  setPerPage: (num) => {},
+  setPerPage: () => {},
 });
 
 export const RepoProvider: FunctionComponent<{

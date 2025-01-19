@@ -1,5 +1,4 @@
 @use "../ui/styles/Variables.scss" as *;
-@use "../ui/styles/font-faces.scss" as *;
 @use "../ui/styles/font-size-standard.scss" as *;
 
 :root {
@@ -12,22 +11,15 @@
   --font-baysan: "Baysan", sans-serif;
   --font-lobster: "Lobster", cursive;
   --vh-height: 0px;
-  --responsive-operator: 0;
   --main-color: #333;
   --bottom-top: 20px;
   --height: 60vw;
-  --services-color-main: any;
-  --services-color-sub: any;
-  --github-overlay-height: any;
+  --services-color-main: black;
+  --services-color-sub: gray;
+  --github-overlay-height: 0px;
   --responsive-operator: 0;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
 
 html,
 body {

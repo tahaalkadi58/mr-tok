@@ -3,7 +3,8 @@ import { list_item } from "@/lib/utils/Class_list_item";
 import scrollToSmoothly from "@/lib/utils/smooth-scroll";
 import IsElementInViewport from "@/lib/utils/isElementInViewPort";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from './Main.module.scss'
+import styles from "./Main.module.scss";
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 export default function NavgationLinks() {
   const [currentSection, setCurrentSection] = useState<string>("");
   useEffect(() => {
@@ -30,7 +31,10 @@ export default function NavgationLinks() {
           scrollToSmoothly((position as number) + 1, 500);
         }}
       >
-        <FontAwesomeIcon className={styles["fa-icon"]} icon={icon}></FontAwesomeIcon>
+        <FontAwesomeIcon
+          className={styles["fa-icon"]}
+          icon={icon as IconDefinition}
+        ></FontAwesomeIcon>
         {linkname}
       </li>
     );

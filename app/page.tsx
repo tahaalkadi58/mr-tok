@@ -1,7 +1,6 @@
 import Navigation from "@/ui/Home/navigation/Main";
 import Header from "@/ui/Home/header/Main";
 import UtilsWrapper from "@/lib/wrappers/UtilsWrapper";
-import RootLayout from "./layout";
 import About from "@/ui/Home/about/About";
 import Services from "@/ui/Home/services/Main";
 import OurWorks from "@/ui/Home/our-works/Main";

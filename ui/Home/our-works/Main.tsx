@@ -55,7 +55,7 @@ const OurWorks: FunctionComponent = () => {
       {[[...type][0].toUpperCase(), ...type.slice(1)]}
     </li>
   ));
-  useLayoutEffect(() => {
+  useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };

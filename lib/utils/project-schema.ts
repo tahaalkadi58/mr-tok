@@ -1,7 +1,7 @@
 import getRandomDate from "./random-time";
 import { iData, iProject, iProjectByTypes } from "../types/app-type";
 
-let dataServer: any = [
+const dataServer: any = [
   {
     name: "project-music-player-web",
   },
@@ -45,7 +45,7 @@ export const result: iProject[] = (dataServer as iData[])
   .map(({ name, createdAt }) => {
     const isProject = name.startsWith("project");
     if (isProject) {
-      const [project, ...rest] = name.split("-");
+      const [, ...rest] = name.split("-");
       const type = rest.pop(); // آخر عنصر هو النوع
       const projectName = rest.join("-"); // باقي العناصر تشكل الاسم
       return new Project(projectName, type as string, createdAt, isProject);

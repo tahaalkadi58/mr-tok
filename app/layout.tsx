@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Head from "next/head";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import {
   rechargeFont,

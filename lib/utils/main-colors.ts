@@ -6,7 +6,7 @@ interface bg_linear {
 }
 
 const background_linear: bg_linear[] = services_items_data.map(
-  ({ mainColor, secondColor }, i) => {
+  ({ mainColor, secondColor }) => {
     return { "first-color": mainColor, "second-color": secondColor };
   },
 );

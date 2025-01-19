@@ -1,4 +1,4 @@
-import { faInfo, faHandshakeAngle, faTrophy, faCommentDots, faPhoneAlt , faUserAlt} from "@fortawesome/free-solid-svg-icons";
+import { faHandshakeAngle, faTrophy, faCommentDots, faPhoneAlt , faUserAlt} from "@fortawesome/free-solid-svg-icons";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 export class Class_List_Item {
   public id;
