@@ -18,7 +18,6 @@ import {
 import { services_items_data } from "@/lib/utils/Class_services_items";
 import SectionTitle from "../shared/SectionTitle";
 import fetchAllRepoLanguages from "@/lib/utils/fetchRepoData";
-import useWindowEvents from "@/lib/hooks/useWindowEvents";
 import { RepoContext } from "@/lib/contexts/GithubContext";
 import windowMedia from "@/lib/utils/windowMediaWidth";
 import styles from "./Main.module.scss";
@@ -57,31 +56,30 @@ const GitHubCharts: FunctionComponent<iCharts> = ({
 }) => {
   const [] = useState();
   const chartRef = useRef<Chart | null>(null);
-  const [base, setBase] = useState<number>(10);
-  const { repos, setPerPage, loading, error } = useContext(RepoContext);
-  const { xs, s, l } = windowMedia;
+  const { repos } = useContext(RepoContext);
+  const { s } = windowMedia;
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [barWidth, setBarWidth] = useState<number>(0);
+
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
       switch (true) {
-        case windowWidth < xs:
-          setBase(4);
-          break;
-        case windowWidth >= xs && windowWidth <= s.max:
-          setBase(7);
+        case windowWidth <= s.max:
+          setBarWidth(40);
           break;
         default:
-          setBase(10);
+          setBarWidth(50);
           break;
       }
     };
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
     const labels = data.map((item) => item.name);
-    const percentages = data.map((item) => parseFloat(item.percentage));
     const ctx = (
       document.getElementById("myBarChart") as HTMLCanvasElement
     )?.getContext("2d");
@@ -110,7 +108,7 @@ const GitHubCharts: FunctionComponent<iCharts> = ({
             ],
             borderWidth: 0,
             borderRadius: 10,
-            barThickness: 5 * base,
+            barThickness: barWidth,
             maxBarThickness: 50,
           },
         ],
@@ -160,7 +158,7 @@ const GitHubCharts: FunctionComponent<iCharts> = ({
         chartRef.current.destroy();
       }
     };
-  }, [color, base]);
+  }, [color, barWidth]);
 
   useEffect(() => {
     fetchAllRepoLanguages(repos, "tahaalkadi58").then((languages) => {
@@ -172,12 +170,11 @@ const GitHubCharts: FunctionComponent<iCharts> = ({
           percentage: ((size / totalSize) * 100).toFixed(2),
         }));
         setStats(stats);
-        // console.log(stats);
       }
     });
   }, []);
   return (
-    <section className={styles['bar-chart']}>
+    <section className={styles["bar-chart"]}>
       <SectionTitle className={styles["section-title"]}>
         My Project Used Techs Percentage
       </SectionTitle>
@@ -185,7 +182,8 @@ const GitHubCharts: FunctionComponent<iCharts> = ({
         style={{
           zIndex: "20",
         }}
-        className={styles['myBarChart-container']}
+        ref={ref}
+        className={styles["myBarChart-container"]}
       >
         <canvas id="myBarChart"></canvas>
       </div>

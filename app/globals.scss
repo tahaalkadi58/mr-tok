@@ -4,22 +4,20 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --font-recharge: "Recharge", sans-serif;
-  --font-montero: "Montero", sans-serif;
-  --font-blackjack: "Blackjack", sans-serif;
-  --font-monotone: "Monotone", sans-serif;
-  --font-baysan: "Baysan", sans-serif;
-  --font-lobster: "Lobster", cursive;
+  --font-recharge: "Recharge", "sans-serif";
+  --font-montero: "Montero", "sans-serif";
+  --font-blackjack: "Blackjack", "sans-serif";
+  --font-monotone: "Monotone", "sans-serif";
+  --font-baysan: "Baysan", "sans-serif";
+  --font-lobster: "Lobster", "cursive";
   --vh-height: 0px;
   --main-color: #333;
   --bottom-top: 20px;
-  --height: 60vw;
+  --height: clamp(200px, 60vw, 300px);
   --services-color-main: black;
   --services-color-sub: gray;
   --github-overlay-height: 0px;
-  --responsive-operator: 0;
 }
-
 
 html,
 body {
@@ -71,6 +69,7 @@ a {
   appearance: none;
   cursor: pointer;
   background-color: inherit;
+  -webkit-tap-highlight-color: transparent;
   &::before {
     top: 0;
     position: absolute;
@@ -140,6 +139,35 @@ a {
   .projects-type-links {
     .type-link.active {
       opacity: 1;
+    }
+  }
+}
+
+// bubble
+
+.bubble {
+  position: relative;
+  overflow: hidden;
+  .ripple-span {
+    position: absolute;
+    border-radius: 50%;
+    background-color: black;
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    margin-left: -50px;
+    animation: ripple 1s;
+    opacity: 0;
+    z-index: 0;
+  }
+  @keyframes ripple {
+    from {
+      opacity: 0.3;
+      transform: scale(0);
+    }
+    to {
+      opacity: 0;
+      transform: scale(10);
     }
   }
 }

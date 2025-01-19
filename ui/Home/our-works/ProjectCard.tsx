@@ -20,7 +20,16 @@ const ProjectCard: FunctionComponent<{
   columns: number;
   height: number;
   width: number;
-}> = ({ currentType, isShowMore, rows, height, width, columns }) => {
+  isPhoneScreen: boolean;
+}> = ({
+  currentType,
+  isShowMore,
+  rows,
+  height,
+  width,
+  columns,
+  isPhoneScreen,
+}) => {
   const contentRef = useRef<HTMLDivElement | null>(null);
 
   // تحديد البيانات مرة واحدة
@@ -40,9 +49,9 @@ const ProjectCard: FunctionComponent<{
     <div
       className={clsx(styles["projects-cards"], isShowMore ? "show-full" : "")}
       style={{
-        gridTemplateColumns: `repeat(${columns}, minmax(${
-          width - 50
-        }px, ${width}px)`,
+        gridTemplateColumns: isPhoneScreen
+          ? `repeat(${columns}, minmax(${width}px, 1fr)`
+          : `repeat(${columns}, minmax(${width - 50}px, ${width}px)`,
         gridTemplateRows: `repeat(${rows}, minmax(${
           height - 50
         }px, ${height}px)`,

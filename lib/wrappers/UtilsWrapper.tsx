@@ -14,7 +14,7 @@ const UtilsWrapper: FunctionComponent = () => {
     });
   }, []);
   useEffect(() => {
-    const ripples = document.querySelectorAll(".ripple");
+    const ripples = document.querySelectorAll(".bubble");
     ripples.forEach((el) => {
       const target = el as element;
       target.addEventListener("click", (ev) => {
@@ -52,7 +52,6 @@ const UtilsWrapper: FunctionComponent = () => {
         "--responsive-operator",
         `${window.innerWidth / baseWidth}`
       );
-      console.log(window.innerWidth / baseWidth);
     };
     // handleResize();
     window.addEventListener("resize", handleResize);
@@ -61,7 +60,13 @@ const UtilsWrapper: FunctionComponent = () => {
       rootStyle.setProperty("--responsive-operator", `${0}`);
     };
   }, []);
-
+  const handleClick = (ev: MouseEvent) => {
+    const target = ev.target;
+  };
+  useEffect(() => {
+    window.addEventListener("click", handleClick);
+    return () => window.removeEventListener("click", handleClick);
+  }, []);
   return <></>;
 };
 

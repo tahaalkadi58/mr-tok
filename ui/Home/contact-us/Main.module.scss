@@ -1,4 +1,4 @@
-@use"../../styles/Variables.scss" as *;
+@use "../../styles/Variables.scss" as *;
 // @use"../../styles/font-faces.scss" as *;
 .contact-us {
   width: 100%;
@@ -170,17 +170,26 @@
         justify-content: center;
         align-items: center;
         height: 50px;
-        overflow: hidden;
         input {
           width: calc(100% - 70px);
           height: 100%;
           padding-left: 15px;
-          background: #2e2e2e;
           border: none;
           color: #fff;
           border-top-left-radius: 15px;
           border-bottom-left-radius: 15px;
           outline: none;
+          appearance: none;
+          background: black;
+          background-image: linear-gradient(black, /* الخلفية السوداء */ black);
+          background-origin: border-box; /* لجعل الخلفية تبدأ من الحدود */
+          background-clip: padding-box, border-box;
+          &:focus {
+            border: 2px solid transparent;
+            border: 2px solid transparent; /* الحفاظ على الشفافية */
+            background-image: linear-gradient(black, black),
+              $rainbow_bg;
+          }
         }
         button {
           background-color: #555;
@@ -191,6 +200,7 @@
           border: none;
           appearance: none;
           cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
           .fa-icon {
             color: white;
             font-size: 30px;

@@ -11,7 +11,6 @@ import GradientIcon from "../shared/GradientIcon";
 export default function RightSide() {
   const typewriteRef = useRef<HTMLParagraphElement | null>(null);
   useEffect(() => {
-    console.log(typewriteRef.current);
     if (typewriteRef.current) {
       const rotate = setTimeout(() => {
         new TxtType(
@@ -29,8 +28,8 @@ export default function RightSide() {
     <div className={styles["profile-right-container"]}>
       <div className={styles["profile-right"]}>
         <div
-          className={clsx(styles.rellax, styles["profile-right"])}
-          data-rellax-speed="-2"
+          className={clsx(styles.rellax, styles["profile-right"], "rellax")}
+          data-rellax-speed="2"
         >
           <h1
             className={clsx(styles["h-1"], styles.coder)}
@@ -43,9 +42,17 @@ export default function RightSide() {
             data-aos-once="true"
             data-aos-anchor-placement="top-bottom"
           >
-            <GradientIcon faIcon={faChevronLeft} style={{}} className={styles['gradient-icon']} />
+            <GradientIcon
+              faIcon={faChevronLeft}
+              style={{}}
+              className={styles["gradient-icon"]}
+            />
             <span>\</span>coder
-            <GradientIcon faIcon={faChevronRight} style={{}} className={styles['gradient-icon']} />
+            <GradientIcon
+              faIcon={faChevronRight}
+              style={{}}
+              className={styles["gradient-icon"]}
+            />
           </h1>
           <h4>
             <p

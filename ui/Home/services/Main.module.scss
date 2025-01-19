@@ -101,6 +101,7 @@ section.services {
           z-index: 3;
           font-size: calc(var(--base) * 4px);
           cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
           border: 2px solid #e6e6e6;
           transition: all 2s, color 0s;
           .svg-icon {
@@ -351,6 +352,11 @@ section.services {
 @media screen and (max-width: 768px) {
   section.services {
     --base: 7;
+    .bar-chart {
+      .myBarChart-container {
+        height: 400px;
+      }
+    }
   }
 }
 @media screen and (max-width: 350px) {
@@ -359,6 +365,15 @@ section.services {
     .description-box {
       p {
         display: none;
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  section.services {
+    .bar-chart {
+      .myBarChart-container {
+        height: 350px;
       }
     }
   }

@@ -13,7 +13,7 @@ export default function Navigation() {
   const navRef = useRef<HTMLDivElement | null>(null);
   const [isShow, setIsShow] = useState<boolean>(true);
   const [isOpened, setIsOpened] = useState<boolean>(false);
-
+  const [whiteBg, setBg] = useState(false);
   useEffect(() => {
     let lastScrollTop = window.scrollY || window.innerHeight;
     const show = () => {
@@ -26,13 +26,10 @@ export default function Navigation() {
       lastScrollTop = lastScrollTopBlock <= 0 ? 0 : lastScrollTopBlock;
     };
     const changeBg = () => {
-      const nav = navRef.current as HTMLElement;
       if (window.scrollY > 120) {
-        nav.classList.add("show");
+        setBg(true);
       } else {
-        if (nav.classList.contains("show")) {
-          nav.classList.remove("show");
-        }
+        setBg(false);
       }
     };
     function handleIsShow() {
@@ -54,17 +51,17 @@ export default function Navigation() {
       }}
     >
       <div
-        className={clsx(
-          styles["nav-container"],
-          isShow ? styles.show : "",
-          "show"
-        )}
+        className={clsx(styles["nav-container"], whiteBg ? styles.show : "")}
         ref={navRef}
       >
         <Logo></Logo>
         <Hero customeSyles={styles.hero}></Hero>
         <ul
-          className={`${clsx({ show: isOpened }, isOpened ? styles.show : "", 'show')}`}
+          className={`${clsx(
+            { show: isOpened },
+            isOpened ? styles.show : "",
+            "show"
+          )}`}
         >
           <NavgationLinks></NavgationLinks>
           <Button

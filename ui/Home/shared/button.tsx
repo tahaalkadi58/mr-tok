@@ -25,7 +25,7 @@ export default function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`${className} btn`}
+      className={`${className} btn bubble`}
       id={id}
       style={style}
       key={key}

@@ -29,7 +29,10 @@ const Carousel: FunctionComponent<iCarousel> = ({
     <span
       data-index={i}
       key={id}
-      className={clsx(activeIndex === id ? styles.active : "", styles.navigators)}
+      className={clsx(
+        activeIndex === id ? styles.active : "",
+        styles.navigators
+      )}
       onClick={() => {
         setActiveIndex(id);
       }}
@@ -45,10 +48,35 @@ const Carousel: FunctionComponent<iCarousel> = ({
     setActiveIndex(activeIndex - 1);
     if (activeIndex <= 0) setActiveIndex(array.length - 1);
   }
-  console.log(-width * -1);
+
+  let touchStartX: number = 0;
+  let touchEndX: number = 0;
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX = e.touches[0].clientX; // تسجيل نقطة بداية اللمس
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchEndX = e.changedTouches[0].clientX; // تسجيل نقطة نهاية اللمس
+    handleSwipe(); // التحقق من اتجاه التمرير
+  };
+
+  const handleSwipe = () => {
+    const swipeDistance = touchStartX - touchEndX;
+
+    if (swipeDistance > 50) {
+      // تمرير لليسار
+      handleNextClick();
+    } else if (swipeDistance < -50) {
+      // تمرير لليمين
+      handlePrevClick();
+    }
+  };
   return (
     <div
       className={clsx(styles["carousel-container"], className ? className : "")}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       <ul
         style={{

@@ -1,4 +1,10 @@
-import React, { useState, useContext, MouseEvent, useEffect } from "react";
+import React, {
+  useState,
+  useContext,
+  MouseEvent,
+  useEffect,
+  useLayoutEffect,
+} from "react";
 import { list_item } from "@/lib/utils/Class_list_item";
 import scrollToSmoothly from "@/lib/utils/smooth-scroll";
 import IsElementInViewport from "@/lib/utils/isElementInViewPort";
@@ -7,6 +13,8 @@ import styles from "./Main.module.scss";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 export default function NavgationLinks() {
   const [currentSection, setCurrentSection] = useState<string>("");
+
+  const [isMax, setIsMax] = useState<boolean | null>(null);
   useEffect(() => {
     const checkInviewPort = () => {
       const sections = document.querySelectorAll(".p-section");
@@ -20,8 +28,28 @@ export default function NavgationLinks() {
     window.addEventListener("scroll", checkInviewPort);
     return () => window.removeEventListener("scroll", checkInviewPort);
   }, []);
+
+  useLayoutEffect(() => {
+    const handleResize = () => {
+      setIsMax(window.innerWidth >= 1100);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const list_item_components = list_item.map(({ name, href, icon, id }) => {
-    const linkname = name[0].toUpperCase() + name.substr(1);
+    const shorLinkName = (name.split(" ") as string[]).reduce(
+      (acc, current) => {
+        return acc.length > current.length ? acc : current;
+      },
+      ""
+    );
+
+    let enhancedName = isMax ? name : shorLinkName;
+    const linkname = enhancedName[0].toUpperCase() + enhancedName.substr(1);
     return (
       <li
         className={`${name} ${currentSection === href ? "active" : ""}`}

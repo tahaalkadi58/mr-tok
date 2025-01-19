@@ -21,7 +21,7 @@ $black: #000;
   justify-items: center;
   align-items: center;
   color: white;
-  overflow: hidden;
+  overflow-y: hidden;
   font-family: var(--font-montero);
   .section-title {
     font-family: var(--font-blackjack);
@@ -49,6 +49,7 @@ $black: #000;
     }
     .type-link {
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
       font-size: 2rem;
       font-family: var(--font-lobster);
       text-align: center;
@@ -57,7 +58,7 @@ $black: #000;
   .projects-cards {
     // Base styles
     position: relative;
-    justify-self: center;
+    justify-self: stretch;
     align-self: flex-start;
     display: grid;
     justify-content: center;
@@ -143,7 +144,7 @@ $black: #000;
         position: absolute;
         bottom: 0;
         width: 100%;
-        transform: translateY(calc(5rem + 0.6em + 4rem));
+        transform: translateY(calc(5rem + 1em + 5rem));
         transition: transform 0.3s;
 
         //content
@@ -184,10 +185,9 @@ $black: #000;
           }
 
           .text {
-            height: 4.375rem;
+            height: 5.5rem;
             margin: 0;
             color: $text_black;
-            font-size: 1rem;
           }
 
           //menu content
@@ -199,7 +199,7 @@ $black: #000;
 
             li {
               width: 25%;
-              height: 3.75rem;
+              height: 3.5rem;
               display: flex;
               justify-content: center;
               align-items: flex-end;
@@ -222,6 +222,7 @@ $black: #000;
     color: #555;
     font-size: 1.5rem;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
     @include flex-center();
   }
 }
@@ -229,7 +230,10 @@ $black: #000;
 @media (max-width: 1199.98px) {
   .our-works {
     .projects-cards {
-      width: 100%;
+      justify-self: stretch;
+      width: 100% !important;
+      max-width: initial;
+      justify-content: center;
     }
   }
 }

@@ -31,7 +31,6 @@ const Services: FunctionComponent = () => {
       }
     });
   }, [animate]);
-  const reposLength = stats?.length;
   return (
     <section
       className={clsx(styles.services, styles[`p-section`], { animate })}
@@ -64,7 +63,7 @@ const Services: FunctionComponent = () => {
         }}
       ></Overlay>
       <p className={styles["section-description"]}>
-        Counted from {reposLength} completed web apps on
+        Counted from {stats?.length} completed web apps on
         <a href="https://github.com/" className="link">
           {" "}
           GitHub{" "}

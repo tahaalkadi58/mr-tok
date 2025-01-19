@@ -6,6 +6,7 @@ import React, {
   useState,
   useContext,
   useLayoutEffect,
+  useMemo,
 } from "react";
 import { projectByTypes } from "@/lib/utils/project-schema";
 import { RepoContext } from "@/lib/contexts/GithubContext";
@@ -75,7 +76,6 @@ const OurWorks: FunctionComponent = () => {
         (indicator.current.offsetWidth + (currentIndex !== 0 ? 20 : 0))
       }px`;
     }
-    console.log(currentIndex);
   }, [currentIndex]);
   const [perimeter, setPerimeter] = useState({
     width: 350,
@@ -83,6 +83,9 @@ const OurWorks: FunctionComponent = () => {
   });
   useEffect(() => {
     switch (true) {
+      case (windowWidth as number) < 320:
+        setPerimeter({ width: 200, height: 400 });
+        break;
       case (windowWidth as number) > s.min && (windowWidth as number) < md.max:
         setPerimeter({ width: 300, height: 400 });
         break;
@@ -93,11 +96,9 @@ const OurWorks: FunctionComponent = () => {
         setPerimeter({ width: 400, height: 400 });
         break;
       default:
-        console.log("error, debug switch");
     }
   }, [windowWidth]);
   useEffect(() => {
-    console.log(repos);
     return () => {};
   }, [repos]);
   useEffect(() => {
@@ -111,6 +112,10 @@ const OurWorks: FunctionComponent = () => {
       rows,
     });
   }, [windowWidth, projects, perimeter]);
+  const isPhoneScreen = useMemo(() => {
+    return (windowWidth as number) <= xs;
+  }, [windowWidth]);
+
   return (
     <section
       className={clsx(styles["our-works"], styles["p-section"], "our-works")}
@@ -136,6 +141,7 @@ const OurWorks: FunctionComponent = () => {
         width={perimeter.width}
         columns={gridArea.columns as number}
         height={perimeter.height}
+        isPhoneScreen={isPhoneScreen}
       ></ProjectCard>
       {projects.length && (gridArea.rows as number) > 1 && (
         <div

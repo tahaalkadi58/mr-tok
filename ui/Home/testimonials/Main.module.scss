@@ -32,6 +32,7 @@
       align-self: center;
       li {
         cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
         height: 350px;
         padding: 25px;
         border-radius: 10px;

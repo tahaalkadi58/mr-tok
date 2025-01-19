@@ -2,8 +2,6 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "./Main.module.scss";
 import clsx from "clsx";
 interface Refs {
-  profilePicture?: HTMLElement | null;
-  pictureContainerCon?: HTMLElement | null;
   card?: HTMLElement | null;
 }
 
@@ -36,39 +34,10 @@ export default function ProfileCard() {
     };
   }, []);
 
-  // change height
-  useLayoutEffect(() => {
-    const { profilePicture, pictureContainerCon } = refs.current;
-
-    if (!profilePicture || !pictureContainerCon) {
-      console.warn("Some elements are not properly referenced.");
-      return;
-    }
-    const rootElement = document.documentElement;
-    const handleResize = () => {
-      const profileWidth = profilePicture.offsetWidth;
-      rootElement.style.setProperty("--height", `${profileWidth}px`);
-      profilePicture.style.height = `${profileWidth}px`;
-      pictureContainerCon.style.height = `${profileWidth}px`;
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      rootElement.style.setProperty("--height", "0px");
-    };
-  }, []);
-
   return (
-    <div
-      className={styles["profile-picture-container-container"]}
-      ref={setRef("pictureContainerCon")}
-    >
+    <div className={styles["profile-picture-container-container"]}>
       <div className={styles["profile-picture-container"]}>
-        <div
-          className={styles["profile-picture"]}
-          ref={setRef("profilePicture")}
-        >
+        <div className={styles["profile-picture"]}>
           <div
             className={clsx(styles.card, { [styles.hover]: show }, "hover")}
             ref={setRef("card")}

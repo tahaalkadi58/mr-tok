@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 
 export default function LibrariesWrapper() {
   useEffect(() => {
-    scrollTo(0, 0)
+    scrollTo(0, -1)
     const updateVHHeight = () => {
       document.documentElement.style.setProperty(
         "--vh-height",

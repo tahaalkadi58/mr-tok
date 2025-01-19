@@ -6,6 +6,7 @@
 .hero {
   color: white;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   h1 {
     font-family: var(--font-blackjack);
     display: flex;
@@ -99,6 +100,7 @@
       border-radius: 8px;
       position: relative;
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
       &::before {
         position: absolute;
         content: "";
@@ -122,12 +124,8 @@
 @media screen and (max-width: 480px) {
   .carousel-container {
     .btn {
-      &.next {
-        display: none;
-      }
-      &.prev {
-        display: none;
-      }
+      top: initial;
+      bottom: -20px;
     }
   }
 }
@@ -142,6 +140,7 @@
     border-radius: 15px;
     background-color: #ffffff;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
     opacity: 0.5;
     box-shadow: 0.5px 0.5px 10px #38383b25, 0px -0.5px 10px #38383b26;
     transition: opacity 0.5s;

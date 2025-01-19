@@ -7,7 +7,7 @@ import clsx from "clsx";
 import styles from "./Main.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteRight } from "@fortawesome/free-solid-svg-icons/faQuoteRight";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faStarHalfStroke } from "@fortawesome/free-solid-svg-icons";
 
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(1);
@@ -24,7 +24,7 @@ export default function Testimonials() {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
-    handleResize()
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -33,9 +33,14 @@ export default function Testimonials() {
   const cardWidth = (windowWidth as number) * 0.8;
   const testimonialsItem = testimonialsArray.map(
     ({ firstname, lastname, thumbnail, rating, comment, work, id }, i) => {
-      const starts = Array(rating)
+      const filledStars = Array(rating)
         .fill(null)
         .map((el, i) => <Icon className="start" key={i} icon={faStar}></Icon>);
+      const freeStars = Array(5 - rating)
+        .fill(null)
+        .map((el, i) => (
+          <Icon className="start" key={i} icon={faStarHalfStroke}></Icon>
+        ));
       return (
         <li
           className={clsx(id === activeIndex ? styles.active : "", styles.item)}
@@ -46,7 +51,6 @@ export default function Testimonials() {
           }}
           onClick={(e) => {
             setActiveIndex(id);
-            console.log(id);
           }}
         >
           <h2 className={clsx(styles.hero, "hero")}>
@@ -66,14 +70,20 @@ export default function Testimonials() {
             ></div>
           </div>
           <p>{comment}</p>
-          <div className={styles.rating}>{starts}</div>
+          <div className={styles.rating}>
+            {filledStars}
+            {freeStars}
+          </div>
           <div className={styles["user-info"]}>
             <div className={styles["full-name"]}>
               {firstname} {lastname}
             </div>
             <div className={styles["user-work"]}>{work}</div>
           </div>
-          <FontAwesomeIcon className={clsx(styles["fa-icon"], styles.quote)} icon={faQuoteRight} />
+          <FontAwesomeIcon
+            className={clsx(styles["fa-icon"], styles.quote)}
+            icon={faQuoteRight}
+          />
         </li>
       );
     }

@@ -9,20 +9,23 @@ import HireMe from "@/ui/Home/hire-me/Main";
 import ContactUs from "@/ui/Home/contact-us/Main";
 import ToTop from "@/ui/Home/shared/to-top";
 import LibrariesWrapper from "@/lib/wrappers/LibrariesWrapper";
+import { RepoProvider } from "@/lib/contexts/GithubContext";
 export default function Home() {
   return (
     <>
-      <LibrariesWrapper />
-      <UtilsWrapper />
-      <Navigation />
-      <Header />
-      <About />
-      <Services />
-      <OurWorks />
-      <HireMe />
-      <Testimonials />
-      <ContactUs />
-      <ToTop />
+      <RepoProvider>
+        <LibrariesWrapper />
+        <UtilsWrapper />
+        <Navigation />
+        <Header />
+        <About />
+        <Services />
+        <OurWorks />
+        <HireMe />
+        <Testimonials />
+        <ContactUs />
+        <ToTop />
+      </RepoProvider>
     </>
   );
 }

@@ -34,7 +34,7 @@ export default function LeftSide() {
 
   return (
     <div className={styles["profile-left-container"]}>
-      <div className={styles["profile-left"]}>
+      <div className={clsx(styles["profile-left"], 'bubble')}>
         <div
           className={clsx(styles["profile-left"], styles.rellax, "rellax")}
           data-rellax-speed="2"

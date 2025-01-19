@@ -16,7 +16,11 @@ export default function ForDown() {
       data-aos-anchor-placement="top-bottom"
     >
       <div className={styles.down}>
-        <GradientIcon faIcon={faChevronDown} style={{}} className={styles['chevron-down']} />
+        <GradientIcon
+          faIcon={faChevronDown}
+          style={{}}
+          className={styles["chevron-down"]}
+        />
       </div>
       <span className={styles.sd}>Scroll Down</span>
     </span>

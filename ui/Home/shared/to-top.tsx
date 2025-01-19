@@ -4,6 +4,7 @@ import Button from "./button";
 import scrollToSmoothly from "@/lib/utils/smooth-scroll";
 import styles from "./Main.module.scss";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import clsx from "clsx";
 
 export default function ToTop() {
   const [scrollTop, setScrollTop] = useState(0);
@@ -33,7 +34,7 @@ export default function ToTop() {
       <Button
         type="button"
         icon={faChevronUp}
-        className={styles["to-top"]}
+        className={clsx(styles["to-top"], 'bubble')}
         onClick={handleClick}
         style={{ display: active ? "flex" : "none" }}
       >
