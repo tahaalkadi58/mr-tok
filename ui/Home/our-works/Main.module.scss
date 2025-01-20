@@ -58,7 +58,7 @@ $black: #000;
   .projects-cards {
     // Base styles
     position: relative;
-    justify-self: stretch;
+    justify-self: center;
     align-self: flex-start;
     display: grid;
     justify-content: center;
@@ -230,7 +230,6 @@ $black: #000;
 @media (max-width: 1199.98px) {
   .our-works {
     .projects-cards {
-      justify-self: stretch;
       width: 100% !important;
       max-width: initial;
       justify-content: center;

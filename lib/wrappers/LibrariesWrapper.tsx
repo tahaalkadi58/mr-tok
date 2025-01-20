@@ -1,59 +1,46 @@
 "use client";
 import React, { useEffect } from "react";
 import AOS from "aos";
-import Rellax from "rellax";
 import aosConfig from "../utils/aos";
 import "aos/dist/aos.css";
+import Rellax from "rellax";
 
 export default function LibrariesWrapper() {
+  const initializeLibraries = () => {
+    AOS.init(aosConfig);
+    new Rellax(".rellax");
+  };
+  const animateVisibleElements = () => {
+    const header = document.querySelector("header");
+    if (header) {
+      const aosElements = header.querySelectorAll("[data-aos]");
+      if (aosElements)
+        aosElements.forEach((el) => {
+          const { top } = el.getBoundingClientRect();
+          if (top < window.innerHeight) {
+            el.classList.add("aos-animate");
+          }
+        });
+    }
+  };
+
   useEffect(() => {
-    scrollTo(0, -1)
-    const updateVHHeight = () => {
-      document.documentElement.style.setProperty(
-        "--vh-height",
-        `${window.innerHeight}px`
-      );
-    };
-
-    const initializeLibraries = () => {
-      AOS.init(aosConfig);
-      new Rellax(".rellax");
-    };
-
-    const animateVisibleElements = () => {
-      const aosElements = document.querySelectorAll("[data-aos]");
-      aosElements.forEach((el) => {
-        const { top } = el.getBoundingClientRect();
-        if (top < window.innerHeight) {
-          el.classList.add("aos-animate");
-        }
-      });
-    };
-
-    const handleLoad = () => {
-      updateVHHeight();
-    };
-    const handelWindowLoad = () => {
-      initializeLibraries();
-      animateVisibleElements();
-    };
-    // Initialize on DOMContentLoaded or immediately if already loaded
     if (document.readyState !== "loading") {
-      handleLoad();
+      initializeLibraries();
     } else {
-      document.addEventListener("DOMContentLoaded", handleLoad);
+      document.addEventListener("DOMContentLoaded", initializeLibraries);
     }
     if (document.readyState === "complete") {
-      handelWindowLoad();
+      animateVisibleElements();
     } else {
-      window.addEventListener("load", handelWindowLoad);
+      window.addEventListener("load", animateVisibleElements);
     }
     // Clean up
     return () => {
-      document.removeEventListener("DOMContentLoaded", handleLoad);
-      window.removeEventListener("load", handelWindowLoad);
+      document.removeEventListener("DOMContentLoaded", initializeLibraries);
+      window.removeEventListener("load", animateVisibleElements);
     };
   }, []);
 
-  return <></>;
+  return null;
 }
