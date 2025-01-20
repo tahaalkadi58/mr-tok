@@ -174,7 +174,14 @@ const GitHubCharts: FunctionComponent<iCharts> = ({
     });
   }, []);
   return (
-    <section className={styles["bar-chart"]}>
+    <section
+      className={styles["bar-chart"]}
+      data-aos="zoom-in"
+      data-aos-offset={50}
+      data-aos-delay={"100"}
+      data-aos-duration="1000"
+      data-aos-easing="ease-in"
+    >
       <SectionTitle className={styles["section-title"]}>
         My Project Used Techs Percentage
       </SectionTitle>

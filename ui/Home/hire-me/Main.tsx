@@ -8,13 +8,27 @@ const HireMe: FunctionComponent = () => {
   return (
     <section className={styles.hire}>
       <div className={styles["hire-widget"]}>
-        <span className={styles["hire-icon"]}>
+        <span
+          className={styles["hire-icon"]}
+          data-aos="fade-left"
+          data-aos-offset={50}
+          data-aos-delay={"100"}
+          data-aos-duration="1000"
+          data-aos-easing="ease-in"
+        >
           <FontAwesomeIcon
             className={styles["fa-icon"]}
             icon={faComment}
           ></FontAwesomeIcon>
         </span>
-        <div className={styles["hire-text"]}>
+        <div
+          className={styles["hire-text"]}
+          data-aos="fade-left"
+          data-aos-offset={50}
+          data-aos-delay={"100"}
+          data-aos-duration="1000"
+          data-aos-easing="ease-in"
+        >
           <h3>Project in Mind?</h3>
           <p>Give your ideas a chance to live in the outside world.</p>
         </div>
@@ -27,6 +41,11 @@ const HireMe: FunctionComponent = () => {
               500
             );
           }}
+          data-aos="fade-left"
+          data-aos-offset={50}
+          data-aos-delay={"100"}
+          data-aos-duration="1000"
+          data-aos-easing="ease-in"
         >
           <h4>Hire Me</h4>
           <h4>

@@ -1,11 +1,11 @@
-'use client';
+"use client";
 import React, { useEffect, useState, useRef } from "react";
 import { services_items_data } from "@/lib/utils/Class_services_items";
 import background_linear from "@/lib/utils/main-colors";
 import ServicesItems from "./ServicesItems";
 import ServiceDescription from "./ServiceDescription";
 import SectionTitle from "../shared/SectionTitle";
-import styles from './Main.module.scss'
+import styles from "./Main.module.scss";
 import clsx from "clsx";
 const MaxValue = services_items_data.reduce((max, item) => {
   return item.id > max.id ? item : max;
@@ -82,9 +82,18 @@ export default function CircleHolder({
   }, [MaxValue, animate]);
 
   return (
-    <section className={clsx(styles.skills)}>
-      <SectionTitle className={styles['section-title']}>My Techs Knowledges</SectionTitle>
-      <div className={styles['circle-holder']}>
+    <section
+      className={clsx(styles.skills)}
+      data-aos="zoom-in"
+      data-aos-offset={50}
+      data-aos-delay={"100"}
+      data-aos-duration="1000"
+      data-aos-easing="ease-in"
+    >
+      <SectionTitle className={styles["section-title"]}>
+        My Techs Knowledges
+      </SectionTitle>
+      <div className={styles["circle-holder"]}>
         <div className={styles.round}></div>
         <ServicesItems
           handleClick={handleClick}

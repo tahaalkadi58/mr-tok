@@ -121,7 +121,16 @@ const OurWorks: FunctionComponent = () => {
       className={clsx(styles["our-works"], styles["p-section"], "our-works")}
       id="our-works"
     >
-      <h2 className={clsx(styles["section-title"])}>My Projects</h2>
+      <h2
+        className={clsx(styles["section-title"])}
+        data-aos="fade-up"
+        data-aos-offset={50}
+        data-aos-delay={"100"}
+        data-aos-duration="1000"
+        data-aos-easing="ease-in"
+      >
+        My Projects
+      </h2>
       <ul
         className={clsx(styles["projects-type-links"])}
         style={{
@@ -130,6 +139,11 @@ const OurWorks: FunctionComponent = () => {
             Object.keys(projectByTypes).length
           }, minmax(0, 1fr))`,
         }}
+        data-aos="fade-up"
+        data-aos-offset={50}
+        data-aos-delay={"150"}
+        data-aos-duration="1000"
+        data-aos-easing="ease-in"
       >
         {ProjectsTypesLinks}
         <div className={styles.indicator} ref={indicator}></div>
@@ -155,6 +169,11 @@ const OurWorks: FunctionComponent = () => {
               );
             }
           }}
+          data-aos="fade-up"
+          data-aos-offset={50}
+          data-aos-delay={"100"}
+          data-aos-duration="1000"
+          data-aos-easing="ease-in"
         >
           {isActiveBtn && (
             <FontAwesomeIcon className={styles["fa-icon"]} icon={faChevronUp} />

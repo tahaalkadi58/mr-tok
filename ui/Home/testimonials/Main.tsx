@@ -97,7 +97,15 @@ export default function Testimonials() {
       )}
       id="testimonials"
     >
-      <h2>What my clients say about me?</h2>
+      <h2
+        data-aos="fade-up"
+        data-aos-offset={50}
+        data-aos-delay={"100"}
+        data-aos-duration="1000"
+        data-aos-easing="ease-in"
+      >
+        What my clients say about me?
+      </h2>
       <Carousel
         array={testimonialsArray}
         width={cardWidth}

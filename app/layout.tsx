@@ -24,22 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        <link rel="icon" />
-        <link rel="icon" type="image/svg+xml" href="/fav_ico.svg" />
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@next/dist/aos.css" />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/rellax@1.12.0/rellax.min.css"
-        />
-      </Head>
       <body
         className={`${rechargeFont.variable} ${monteroFont.variable} ${blackjackFont.variable} ${monotoneFont.variable} ${baysanFont.variable} ${lobsterFont.variable}`}
       >
         {children}
-        <script src="https://cdn.jsdelivr.net/npm/aos@next/dist/aos.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/rellax@1.12.0/rellax.min.js"></script>
       </body>
     </html>
   );

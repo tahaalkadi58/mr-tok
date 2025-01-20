@@ -6,8 +6,17 @@ import GradientIcon from "../shared/GradientIcon";
 const FooterTop: FunctionComponent = () => {
   const contactInfo = ContactInfo.map(({ icon, id, contactType, moreInfo }) => {
     return (
-      <div className={styles["info-type"]} key={id} id={`${id}`}>
-        <GradientIcon className={styles["fa-icon"]} faIcon={icon}  />
+      <div
+        className={styles["info-type"]}
+        key={id}
+        id={`${id}`}
+        data-aos="fade-up"
+        data-aos-offset={50}
+        data-aos-delay={100 * id}
+        data-aos-duration="1000"
+        data-aos-easing="ease-in"
+      >
+        <GradientIcon className={styles["fa-icon"]} faIcon={icon} />
         <div className={styles.info}>
           <h4>
             {contactType.charAt(0).toUpperCase() + contactType.substring(1)} me

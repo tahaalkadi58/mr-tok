@@ -29,7 +29,7 @@ export default function RightSide() {
       <div className={styles["profile-right"]}>
         <div
           className={clsx(styles.rellax, styles["profile-right"], "rellax")}
-          data-rellax-speed="2"
+          data-rellax-speed="1"
         >
           <h1
             className={clsx(styles["h-1"], styles.coder)}

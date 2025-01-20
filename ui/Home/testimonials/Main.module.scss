@@ -113,7 +113,6 @@
         li {
           grid-template-columns: 1fr 150px;
           grid-template-rows: 150px 1fr auto auto;
-          height: 500px;
           .thumbnail {
             border-top-left-radius: 30%;
             border-top-right-radius: 0%;
@@ -133,11 +132,13 @@
 @media screen and (max-width: 480px) {
   .testimonials-container {
     grid-template-columns: 0px 1fr 0px;
+
     .testimonials {
       ul {
         li {
           grid-template-columns: 1fr;
           grid-template-rows: 50% 1fr auto auto;
+          height: 500px;
           .thumbnail {
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;

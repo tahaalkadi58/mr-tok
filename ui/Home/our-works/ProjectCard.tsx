@@ -68,7 +68,15 @@ const ProjectCard: FunctionComponent<{
         const formattedType = type.charAt(0).toUpperCase() + type.slice(1);
 
         return (
-          <div className={styles["project-card"]} key={id}>
+          <div
+            className={styles["project-card"]}
+            key={id}
+            data-aos="fade-left"
+            data-aos-offset={50}
+            data-aos-delay={`${100 * id}`}
+            data-aos-duration="1000"
+            data-aos-easing="ease-in"
+          >
             <div className={styles.date}>
               <span className={styles.day}>{day}</span>
               <span className={styles.month}>{month}</span>

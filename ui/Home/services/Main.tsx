@@ -62,7 +62,14 @@ const Services: FunctionComponent = () => {
           opacity: "0.2",
         }}
       ></Overlay>
-      <p className={styles["section-description"]}>
+      <p
+        className={styles["section-description"]}
+        data-aos="fade-up"
+        data-aos-offset={50}
+        data-aos-delay={"100"}
+        data-aos-duration="1000"
+        data-aos-easing="ease-in"
+      >
         Counted from {stats?.length} completed web apps on
         <a href="https://github.com/" className="link">
           {" "}
@@ -73,7 +80,14 @@ const Services: FunctionComponent = () => {
           My Personal Account{" "}
         </a>
       </p>
-      <div className={styles["take-action"]}>
+      <div
+        className={styles["take-action"]}
+        data-aos="fade-left"
+        data-aos-offset={50}
+        data-aos-delay={"100"}
+        data-aos-duration="1000"
+        data-aos-easing="ease-in"
+      >
         <div
           className={clsx(styles.bubble, styles.contact, styles.btn, "btn")}
           onClick={() => {
@@ -94,6 +108,11 @@ const Services: FunctionComponent = () => {
             styles["see-more"],
             styles["to-fill"]
           )}
+          data-aos="fade-right"
+          data-aos-offset={50}
+          data-aos-delay={"100"}
+          data-aos-duration="1000"
+          data-aos-easing="ease-in"
         >
           See More
         </a>
@@ -101,6 +120,11 @@ const Services: FunctionComponent = () => {
       <button
         type="button"
         className={clsx("btn", styles.pause)}
+        data-aos="fade-left"
+        data-aos-offset={50}
+        data-aos-delay={"100"}
+        data-aos-duration="1000"
+        data-aos-easing="ease-in"
         onClick={() => {
           setAnimate(!animate);
         }}

@@ -6,8 +6,7 @@ import "aos/dist/aos.css";
 import Rellax from "rellax";
 
 export default function LibrariesWrapper() {
-  const initializeLibraries = () => {
-    AOS.init(aosConfig);
+  const initializeRellax = () => {
     new Rellax(".rellax");
   };
   const animateVisibleElements = () => {
@@ -23,22 +22,21 @@ export default function LibrariesWrapper() {
         });
     }
   };
-
+  const handleLoad = () => {
+    scrollTo(-1, 0);
+    animateVisibleElements();
+    initializeRellax();
+  };
   useEffect(() => {
-    if (document.readyState !== "loading") {
-      initializeLibraries();
-    } else {
-      document.addEventListener("DOMContentLoaded", initializeLibraries);
-    }
+    AOS.init(aosConfig);
     if (document.readyState === "complete") {
-      animateVisibleElements();
+      handleLoad();
     } else {
-      window.addEventListener("load", animateVisibleElements);
+      window.addEventListener("load", handleLoad);
     }
     // Clean up
     return () => {
-      document.removeEventListener("DOMContentLoaded", initializeLibraries);
-      window.removeEventListener("load", animateVisibleElements);
+      window.removeEventListener("load", handleLoad);
     };
   }, []);
 
