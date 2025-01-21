@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useLayoutEffect,
 } from "react";
+import GradientIcon from "../shared/GradientIcon";
 import { list_item } from "@/lib/utils/Class_list_item";
 import scrollToSmoothly from "@/lib/utils/smooth-scroll";
 import IsElementInViewport from "@/lib/utils/isElementInViewPort";
@@ -61,10 +62,10 @@ export default function NavgationLinks() {
           scrollToSmoothly((position as number) + 1, 500);
         }}
       >
-        <FontAwesomeIcon
+        <GradientIcon
           className={styles["fa-icon"]}
-          icon={icon as IconDefinition}
-        ></FontAwesomeIcon>
+          faIcon={icon as IconDefinition}
+        ></GradientIcon>
         {linkname}
       </li>
     );

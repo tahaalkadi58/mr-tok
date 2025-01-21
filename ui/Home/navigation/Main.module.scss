@@ -166,15 +166,16 @@
           overflow: hidden;
           color: white;
           &::after {
-            background: rgba(255, 255, 255, 0.2) !important;
+            background: rgba(255, 255, 255, 0.1);
             top: 0;
             left: 0;
             bottom: initial;
             height: 100%;
           }
-          &:hover {
+          &:not(.active):hover {
             transition: 0.25s;
             -webkit-text-fill-color: white;
+            font-weight: normal;
             &::after {
               opacity: 1;
               width: 100%;
@@ -182,6 +183,12 @@
           }
           &.active {
             color: transparent;
+            &::after {
+              background: rgba(255, 255, 255, 0.3);
+            }
+            .fa-icon {
+              background-image: $rainbow_bg;
+            }
           }
           .fa-icon {
             display: initial;
@@ -191,7 +198,8 @@
             margin: 0 15px;
             justify-content: center;
             align-items: center;
-            color: white;
+            background: white;
+            transition: background-image 0.25s, background-color 0.25s;
           }
         }
       }

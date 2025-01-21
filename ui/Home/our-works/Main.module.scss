@@ -65,6 +65,7 @@ $black: #000;
     column-gap: 3vh;
     row-gap: 7vh;
     // min-height: 30vh;
+    transition: height 0.5s, min-height 0.5s;
     padding: 3vh;
     width: 80%;
     max-width: 85%;
