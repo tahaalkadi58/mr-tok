@@ -10,9 +10,6 @@ export default function ForDown() {
       data-aos="fade-down"
       data-aos-offset={100}
       data-aos-delay={"100"}
-      data-aos-duration="1000"
-      data-aos-easing="ease-in"
-      data-aos-once="true"
       data-aos-anchor-placement="top-bottom"
     >
       <div className={styles.down}>

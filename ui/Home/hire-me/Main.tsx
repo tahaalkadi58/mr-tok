@@ -11,10 +11,7 @@ const HireMe: FunctionComponent = () => {
         <span
           className={styles["hire-icon"]}
           data-aos="fade-left"
-          data-aos-offset={50}
           data-aos-delay={"100"}
-          data-aos-duration="1000"
-          data-aos-easing="ease-in"
         >
           <FontAwesomeIcon
             className={styles["fa-icon"]}
@@ -24,10 +21,7 @@ const HireMe: FunctionComponent = () => {
         <div
           className={styles["hire-text"]}
           data-aos="fade-left"
-          data-aos-offset={50}
           data-aos-delay={"100"}
-          data-aos-duration="1000"
-          data-aos-easing="ease-in"
         >
           <h3>Project in Mind?</h3>
           <p>Give your ideas a chance to live in the outside world.</p>
@@ -42,10 +36,7 @@ const HireMe: FunctionComponent = () => {
             );
           }}
           data-aos="fade-left"
-          data-aos-offset={50}
           data-aos-delay={"100"}
-          data-aos-duration="1000"
-          data-aos-easing="ease-in"
         >
           <h4>Hire Me</h4>
           <h4>

@@ -71,11 +71,9 @@ const ProjectCard: FunctionComponent<{
           <div
             className={styles["project-card"]}
             key={id}
-            data-aos="fade-left"
-            data-aos-offset={50}
+            data-aos="zoom-in-up"
             data-aos-delay={`${100 * id}`}
-            data-aos-duration="1000"
-            data-aos-easing="ease-in"
+            data-aos-once='false'
           >
             <div className={styles.date}>
               <span className={styles.day}>{day}</span>

@@ -11,10 +11,7 @@ const FooterTop: FunctionComponent = () => {
         key={id}
         id={`${id}`}
         data-aos="fade-up"
-        data-aos-offset={50}
         data-aos-delay={100 * id}
-        data-aos-duration="1000"
-        data-aos-easing="ease-in"
       >
         <GradientIcon className={styles["fa-icon"]} faIcon={icon} />
         <div className={styles.info}>

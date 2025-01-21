@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import clsx from "clsx";
 import styles from "./Main.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTentArrowLeftRight } from "@fortawesome/free-solid-svg-icons";
+import { faTelegram } from "@fortawesome/free-brands-svg-icons";
 const SubscribeWidget: FunctionComponent = () => {
   return (
     <div className={styles["footer-widget"]}>
@@ -20,7 +20,7 @@ const SubscribeWidget: FunctionComponent = () => {
           <button>
             <FontAwesomeIcon
               className={styles["fa-icon"]}
-              icon={faTentArrowLeftRight}
+              icon={faTelegram}
             />
           </button>
         </form>

@@ -85,10 +85,7 @@ export default function CircleHolder({
     <section
       className={clsx(styles.skills)}
       data-aos="zoom-in"
-      data-aos-offset={50}
       data-aos-delay={"100"}
-      data-aos-duration="1000"
-      data-aos-easing="ease-in"
     >
       <SectionTitle className={styles["section-title"]}>
         My Techs Knowledges

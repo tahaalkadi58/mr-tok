@@ -36,11 +36,6 @@ const Carousel: FunctionComponent<iCarousel> = ({
       onClick={() => {
         setActiveIndex(id);
       }}
-      data-aos="fade-up"
-      data-aos-offset={50}
-      data-aos-delay={100 * id}
-      data-aos-duration="1000"
-      data-aos-easing="ease-in"
     ></span>
   ));
   function handleNextClick() {
@@ -98,10 +93,7 @@ const Carousel: FunctionComponent<iCarousel> = ({
         type={"button"}
         onClick={handlePrevClick}
         data-aos="fade-left"
-        data-aos-offset={50}
         data-aos-delay={"100"}
-        data-aos-duration="1000"
-        data-aos-easing="ease-in"
       ></Button>
 
       <Button
@@ -110,10 +102,7 @@ const Carousel: FunctionComponent<iCarousel> = ({
         type={"button"}
         onClick={handleNextClick}
         data-aos="fade-right"
-        data-aos-offset={50}
         data-aos-delay={"100"}
-        data-aos-duration="1000"
-        data-aos-easing="ease-in"
       ></Button>
       <div className={styles.navigators}>{navigators}</div>
     </div>

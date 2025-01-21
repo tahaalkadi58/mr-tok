@@ -30,15 +30,21 @@ export default function ToTop() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
-    <div className={styles["to-top-container"]}>
-      <Button
-        type="button"
-        icon={faChevronUp}
-        className={clsx(styles["to-top"], 'bubble')}
-        onClick={handleClick}
-        style={{ display: active ? "flex" : "none" }}
+    active && (
+      <div
+        className={styles["to-top-container"]}
+        data-aos="fade-up"
+        data-aos-delay={`${100}`}
+        data-aos-once="false"
       >
-      </Button>
-    </div>
+        <Button
+          type="button"
+          icon={faChevronUp}
+          className={clsx(styles["to-top"], "bubble")}
+          onClick={handleClick}
+          style={{ display: "flex" }}
+        ></Button>
+      </div>
+    )
   );
 }

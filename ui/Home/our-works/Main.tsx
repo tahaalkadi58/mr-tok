@@ -99,7 +99,9 @@ const OurWorks: FunctionComponent = () => {
     }
   }, [windowWidth]);
   useEffect(() => {
-    return () => {};
+    return () => {
+      console.log(repos);
+    };
   }, [repos]);
   useEffect(() => {
     const columns =
@@ -124,10 +126,7 @@ const OurWorks: FunctionComponent = () => {
       <h2
         className={clsx(styles["section-title"])}
         data-aos="fade-up"
-        data-aos-offset={50}
         data-aos-delay={"100"}
-        data-aos-duration="1000"
-        data-aos-easing="ease-in"
       >
         My Projects
       </h2>
@@ -140,10 +139,7 @@ const OurWorks: FunctionComponent = () => {
           }, minmax(0, 1fr))`,
         }}
         data-aos="fade-up"
-        data-aos-offset={50}
         data-aos-delay={"150"}
-        data-aos-duration="1000"
-        data-aos-easing="ease-in"
       >
         {ProjectsTypesLinks}
         <div className={styles.indicator} ref={indicator}></div>
@@ -170,10 +166,7 @@ const OurWorks: FunctionComponent = () => {
             }
           }}
           data-aos="fade-up"
-          data-aos-offset={50}
           data-aos-delay={"100"}
-          data-aos-duration="1000"
-          data-aos-easing="ease-in"
         >
           {isActiveBtn && (
             <FontAwesomeIcon className={styles["fa-icon"]} icon={faChevronUp} />

@@ -4,7 +4,6 @@ import { FunctionComponent } from "react";
 import { list_item } from "../header/ExternalLink";
 import clsx from "clsx";
 import styles from "./Main.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GradientIcon from "../shared/GradientIcon";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 const FooterInfoWidget: FunctionComponent = () => {

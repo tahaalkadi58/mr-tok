@@ -97,13 +97,7 @@ export default function Testimonials() {
       )}
       id="testimonials"
     >
-      <h2
-        data-aos="fade-up"
-        data-aos-offset={50}
-        data-aos-delay={"100"}
-        data-aos-duration="1000"
-        data-aos-easing="ease-in"
-      >
+      <h2 data-aos="fade-up" data-aos-delay={"100"}>
         What my clients say about me?
       </h2>
       <Carousel

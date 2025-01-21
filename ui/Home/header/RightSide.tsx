@@ -36,10 +36,8 @@ export default function RightSide() {
             data-aos="fade-right"
             data-aos-offset="200"
             data-aos-delay="100"
-            data-aos-duration="1000"
             data-aos-easing="ease"
             data-aos-mirror="true"
-            data-aos-once="true"
             data-aos-anchor-placement="top-bottom"
           >
             <GradientIcon

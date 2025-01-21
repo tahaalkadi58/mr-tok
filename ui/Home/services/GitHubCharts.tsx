@@ -56,7 +56,7 @@ const GitHubCharts: FunctionComponent<iCharts> = ({
 }) => {
   const [] = useState();
   const chartRef = useRef<Chart | null>(null);
-  const { repos } = useContext(RepoContext);
+  const { repos, loading } = useContext(RepoContext);
   const { s } = windowMedia;
   const ref = useRef<HTMLDivElement | null>(null);
   const [barWidth, setBarWidth] = useState<number>(0);
@@ -161,26 +161,24 @@ const GitHubCharts: FunctionComponent<iCharts> = ({
   }, [color, barWidth]);
 
   useEffect(() => {
-    fetchAllRepoLanguages(repos, "tahaalkadi58").then((languages) => {
-      if (languages) {
-        const totalSize = Object.values(languages).reduce((a, b) => a + b, 0);
+    if (!loading)
+      fetchAllRepoLanguages(repos, "tahaalkadi58").then((languages) => {
+        if (languages) {
+          const totalSize = Object.values(languages).reduce((a, b) => a + b, 0);
 
-        const stats = Object.entries(languages).map(([language, size]) => ({
-          name: language,
-          percentage: ((size / totalSize) * 100).toFixed(2),
-        }));
-        setStats(stats);
-      }
-    });
-  }, []);
+          const stats = Object.entries(languages).map(([language, size]) => ({
+            name: language,
+            percentage: ((size / totalSize) * 100).toFixed(2),
+          }));
+          setStats(stats);
+        }
+      });
+  }, [loading]);
   return (
     <section
       className={styles["bar-chart"]}
       data-aos="zoom-in"
-      data-aos-offset={50}
       data-aos-delay={"100"}
-      data-aos-duration="1000"
-      data-aos-easing="ease-in"
     >
       <SectionTitle className={styles["section-title"]}>
         My Project Used Techs Percentage

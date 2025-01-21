@@ -22,10 +22,8 @@ export default function LeftSide() {
           data-aos={aos}
           data-aos-offset="200"
           data-aos-delay="100"
-          data-aos-duration="1000"
           data-aos-easing="ease"
           data-aos-mirror="true"
-          data-aos-once="true"
           data-aos-anchor-placement="top-bottom"
         />
       </div>
@@ -34,7 +32,7 @@ export default function LeftSide() {
 
   return (
     <div className={styles["profile-left-container"]}>
-      <div className={clsx(styles["profile-left"], 'bubble')}>
+      <div className={clsx(styles["profile-left"])}>
         <div
           className={clsx(styles["profile-left"], styles.rellax, "rellax")}
           data-rellax-speed="2"
@@ -44,10 +42,7 @@ export default function LeftSide() {
             data-aos="zoom-out"
             data-aos-offset="200"
             data-aos-delay="100"
-            data-aos-duration="1000"
-            data-aos-easing="ease-in"
             data-aos-mirror="true"
-            data-aos-once="true"
             data-aos-anchor-placement="top-bottom"
           >
             <span>Designer</span>
@@ -59,10 +54,7 @@ export default function LeftSide() {
               data-aos="zoom-out"
               data-aos-offset="200"
               data-aos-delay="100"
-              data-aos-duration="1000"
-              data-aos-easing="ease-in"
               data-aos-mirror="true"
-              data-aos-once="true"
               data-aos-anchor-placement="top-bottom"
             >
               Self learned, design Like experted!
