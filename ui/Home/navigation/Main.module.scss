@@ -71,11 +71,13 @@
           height: 3px;
           border-bottom: 2px transparent red;
           background-image: $rainbow_bg;
-          transition: 0.25s;
+          opacity: 0;
+          transition: width 0.25s, opacity 0.25s;
           border-radius: 5px;
         }
         &.active {
           &::after {
+            opacity: 1;
             width: 100%;
           }
         }
@@ -162,19 +164,24 @@
           margin-top: 45px;
           flex-direction: row-reverse;
           overflow: hidden;
-          &:hover {
-            transition: 0.25s;
-            color: white;
-            -webkit-text-fill-color: white;
-          }
+          color: white;
           &::after {
             background: rgba(255, 255, 255, 0.2) !important;
-          }
-          &.active::after {
             top: 0;
             left: 0;
             bottom: initial;
             height: 100%;
+          }
+          &:hover {
+            transition: 0.25s;
+            -webkit-text-fill-color: white;
+            &::after {
+              opacity: 1;
+              width: 100%;
+            }
+          }
+          &.active {
+            color: transparent;
           }
           .fa-icon {
             display: initial;
@@ -184,9 +191,7 @@
             margin: 0 15px;
             justify-content: center;
             align-items: center;
-            background-image: $rainbow_bg;
-            @include blindColor();
-            transition: background-image 0.25s;
+            color: white;
           }
         }
       }
