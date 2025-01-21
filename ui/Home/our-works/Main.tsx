@@ -120,7 +120,7 @@ const OurWorks: FunctionComponent = () => {
 
   return (
     <section
-      className={clsx(styles["our-works"], styles["p-section"], "our-works")}
+      className={clsx(styles["our-works"], styles["p-section"], "our-works", 'p-section')}
       id="our-works"
     >
       <h2

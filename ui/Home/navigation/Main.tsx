@@ -36,7 +36,6 @@ export default function Navigation() {
       show();
       changeBg();
     }
-    handleIsShow();
     window.addEventListener("scroll", handleIsShow);
     return () => {
       window.removeEventListener("scroll", handleIsShow);

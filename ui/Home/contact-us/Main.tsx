@@ -8,7 +8,7 @@ import clsx from "clsx";
 import styles from './Main.module.scss';
 export default function ContactUs() {
   return (
-    <footer className={clsx(styles['p-section'], styles['contact-us'])} id="contact-us">
+    <footer className={clsx(styles['p-section'], styles['contact-us'], 'p-section')} id="contact-us">
       <FooterTop></FooterTop>
       <div className={styles["footer-content"]}>
         <FooterInfoWidget></FooterInfoWidget>

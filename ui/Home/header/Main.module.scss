@@ -15,18 +15,18 @@
     ul {
       justify-content: space-between;
       flex-direction: column;
-      height: 24vh;
+      height: calc(0.01 * 24 * var(--vh-height));
     }
   }
   // For Down
 
   .down-container {
     position: absolute;
-    bottom: 7vh;
+    bottom: calc(0.01 * 7 * var(--vh-height));
     z-index: 10;
     right: 5%;
     .down {
-      height: 20vh;
+      height: calc(0.01 * 20 * var(--vh-height));
       width: 0.5vw;
       background-image: linear-gradient(0deg, #20de26, #1d5eca);
       position: relative;
@@ -42,14 +42,14 @@
         left: 50%;
         transform-origin: bottom;
         transform: translate(-50%, 35%);
-        height: 5vh;
+        height: calc(0.01 * 5 * var(--vh-height));
         width: 5vw;
       }
     }
     .sd {
       color: white;
       position: absolute;
-      bottom: 5vh;
+      bottom: calc(0.01 * 5 * var(--vh-height));
       z-index: 10;
       right: 15px;
       transform: rotate(-90deg);
@@ -57,20 +57,20 @@
   }
   @keyframes down {
     0% {
-      height: 20vh;
+      height: calc(0.01 * 20 * var(--vh-height));
     }
     50% {
-      height: 10vh;
+      height: calc(0.01 * 10 * var(--vh-height));
     }
     100% {
-      height: 20vh;
+      height: calc(0.01 * 20 * var(--vh-height));
     }
   }
 
   .profile {
     background-color: var(--main-color);
     width: 100%;
-    height: 100vh;
+    height: calc(0.01 * 100 * var(--vh-height));
     position: relative;
   }
   .profile-picture-container-container {
@@ -180,7 +180,7 @@
 
   .profile-left-container {
     width: calc(50% - 10px);
-    height: 100vh;
+    height: calc(0.01 * 100 * var(--vh-height));
     background-color: white;
     position: absolute;
     left: 0;
@@ -285,7 +285,7 @@
   }
   .profile-right-container {
     width: calc(50% - 10px);
-    height: 100vh;
+    height: calc(0.01 * 100 * var(--vh-height));
     background-color: black;
     position: absolute;
     right: 0;
@@ -353,27 +353,24 @@
     .profile-left {
       align-items: center;
       justify-content: flex-start;
-      padding-top: 12.5vh;
+      padding-top: calc(0.01 * 12.5 * var(--vh-height));
     }
     .profile-right {
       align-items: center;
       justify-content: flex-end;
-      padding-bottom: 12.5vh;
+      padding-bottom: calc(0.01 * 12.5 * var(--vh-height));
     }
   }
 }
 
 @media screen and (max-width: 599px) {
   .header {
-    /*     .slogan {
-      display: none;
-    } */
     .profile-left.rellax {
-      height: 15vh;
+      height: calc(0.01 * 15 * var(--vh-height));
       justify-content: center;
     }
     .profile-right.rellax {
-      height: 15vh;
+      height: calc(0.01 * 15 * var(--vh-height));
     }
     .profile-left .img.red {
       left: 0%;
@@ -515,14 +512,14 @@
   .header {
     .profile-left.rellax {
       justify-content: flex-start;
-      height: 25vh;
+      height: calc(0.01 * 25 * var(--vh-height));
       h1 {
         font-size: 2.6rem;
       }
     }
     .profile-right.rellax {
       justify-content: flex-end;
-      height: 25vh;
+      height: calc(0.01 * 25 * var(--vh-height));
       h1 {
         font-size: 2.6rem;
       }
@@ -539,14 +536,14 @@
       .sd {
         white-space: nowrap;
         right: -15px;
-        bottom: 7vh;
+        bottom: calc(0.01 * 7 * var(--vh-height));
       }
     }
   }
 
   @keyframes down {
     50% {
-      height: 14vh;
+      height: calc(0.01 * 14 * var(--vh-height));
     }
   }
 }

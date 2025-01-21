@@ -11,6 +11,7 @@ import IsElementInViewport from "@/lib/utils/isElementInViewPort";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./Main.module.scss";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import clsx from "clsx";
 export default function NavgationLinks() {
   const [currentSection, setCurrentSection] = useState<string>("");
 
@@ -50,9 +51,10 @@ export default function NavgationLinks() {
 
     let enhancedName = isMax ? name : shorLinkName;
     const linkname = enhancedName[0].toUpperCase() + enhancedName.substr(1);
+    console.log(currentSection, href, currentSection === href);
     return (
       <li
-        className={`${name} ${currentSection === href ? "active" : ""}`}
+        className={clsx(currentSection === href ? styles.active : "")}
         key={"name-" + id}
         onClick={() => {
           const position = document.getElementById(`${href}`)?.offsetTop;

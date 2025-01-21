@@ -1,5 +1,5 @@
 "use client";
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent, useEffect , useLayoutEffect } from "react";
 import { createRoot } from "react-dom/client";
 import createRipple from "../utils/ripple-effect";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -60,12 +60,16 @@ const UtilsWrapper: FunctionComponent = () => {
       rootStyle.setProperty("--responsive-operator", `${0}`);
     };
   }, []);
-  const handleClick = (ev: MouseEvent) => {
-    const target = ev.target;
+ /*  const handleClick = () => {
   };
   useEffect(() => {
     window.addEventListener("click", handleClick);
     return () => window.removeEventListener("click", handleClick);
+  }, []); */
+
+  useEffect(() => {
+   const root = document.documentElement.style;
+   root.setProperty('--vh-height', `${window.innerHeight}px`);
   }, []);
   return <></>;
 };

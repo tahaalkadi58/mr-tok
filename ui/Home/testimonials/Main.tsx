@@ -93,7 +93,8 @@ export default function Testimonials() {
       className={clsx(
         styles.testimonials,
         styles["p-section"],
-        styles["testimonials-container"]
+        styles["testimonials-container"],
+        'p-section'
       )}
       id="testimonials"
     >

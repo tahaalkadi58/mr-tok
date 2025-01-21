@@ -33,7 +33,7 @@ const Services: FunctionComponent = () => {
   }, [animate]);
   return (
     <section
-      className={clsx(styles.services, styles[`p-section`], { animate })}
+      className={clsx(styles.services, styles[`p-section`], 'p-section',{ animate })}
       id="services"
     >
       <SectionTitle className={clsx(styles["section-title"])}>
