@@ -1,68 +1,39 @@
-import getRandomDate from "./random-time";
-import { iData, iProject, iProjectByTypes } from "../types/app-type";
+import { iGithubRepo, iProject, iProjectByTypes } from "../types/app-type";
 
-const dataServer: any = [
-  {
-    name: "project-music-player-web",
-  },
-  {
-    name: "project-xo-game-app",
-  },
-  {
-    name: "project-portfolio-web",
-  },
-  {
-    name: "project-e-commerce-web",
-  },
-  {
-    name: "project-task-manger-app",
-  },
-  {
-    name: "idontknow",
-  },
-];
-
-(dataServer as iData[]).forEach((item) => {
-  if (!item.createdAt) {
-    item.createdAt = getRandomDate(new Date(2020, 0, 1), new Date(2025, 0, 1));
-  }
-});
-
-export class Project implements iProject {
-  public id: number;
-  static lastId = -1;
-  constructor(
-    public name: string,
-    public type: string,
-    public createdAt: Date,
-    public isProject: boolean,
-  ) {
-    this.id = ++Project.lastId;
-  }
+export function mapGithubReposToProjects(repos: iGithubRepo[]): iProject[] {
+  return repos
+    .filter((repo) => !repo.fork && repo.name !== "mr-tok")
+    .map((repo, index) => {
+      const parts = repo.name.split("-");
+      const type = parts.pop() || "other";
+      const name = parts.join("-");
+      return {
+        id: index,
+        name,
+        type,
+        repoName: repo.name,
+        createdAt: new Date(repo.created_at),
+        githubUrl: repo.html_url,
+        description: repo.description || "",
+        language: repo.language || "",
+        stars: repo.stargazers_count,
+        isProject: true,
+      } as iProject;
+    });
 }
 
-export const result: iProject[] = (dataServer as iData[])
-  .map(({ name, createdAt }) => {
-    const isProject = name.startsWith("project");
-    if (isProject) {
-      const [, ...rest] = name.split("-");
-      const type = rest.pop(); // آخر عنصر هو النوع
-      const projectName = rest.join("-"); // باقي العناصر تشكل الاسم
-      return new Project(projectName, type as string, createdAt, isProject);
-    }
-    return null;
-  })
-  .filter((el) => el !== null);
-
-export const projectByTypes = result.reduce<iProjectByTypes>(
-  (acc, project) => {
-    const { type } = project; // استخراج النوع من المشروع
-    if (!acc[type]) {
-      acc[type] = []; // إذا لم يكن النوع موجودًا في المجمع، أضف مصفوفة فارغة
-    }
-    acc[type].push(project); // أضف المشروع إلى المصفوفة المناسبة
-    acc.all.push(project);
-    return acc;
-  },
-  { all: [] },
-);
+export function groupProjectsByType(projects: iProject[]): iProjectByTypes {
+  return projects.reduce<iProjectByTypes>(
+    (acc, project) => {
+      const { type } = project;
+      if (!acc[type]) {
+        acc[type] = [];
+      }
+      acc[type].push(project);
+      if (!acc.all) acc.all = [];
+      acc.all.push(project);
+      return acc;
+    },
+    { all: [] }
+  );
+}

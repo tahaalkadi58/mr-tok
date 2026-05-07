@@ -5,10 +5,9 @@ import React, {
   useRef,
   useState,
   useContext,
-  useLayoutEffect,
   useMemo,
 } from "react";
-import { projectByTypes } from "@/lib/utils/project-schema";
+import { mapGithubReposToProjects, groupProjectsByType } from "@/lib/utils/project-schema";
 import { RepoContext } from "@/lib/contexts/GithubContext";
 import ProjectCard from "./ProjectCard";
 import scrollToSmoothly from "@/lib/utils/smooth-scroll";
@@ -17,6 +16,7 @@ import styles from "./Main.module.scss";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+
 const OurWorks: FunctionComponent = () => {
   const [currentType, setCurrentType] = useState<string>("all");
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -32,20 +32,25 @@ const OurWorks: FunctionComponent = () => {
   const { repos } = useContext(RepoContext);
   const [windowWidth, setWindowWidth] = useState<number | null>(null);
   const { xs, s, md, l, xl } = windowMedia;
+
+  const projects = useMemo(() => {
+    const mapped = mapGithubReposToProjects(repos);
+    return groupProjectsByType(mapped);
+  }, [repos]);
+
   const currentTypeSetter = (type: string) => {
     setCurrentType(type);
   };
-  const projects = projectByTypes[currentType];
-  const ProjectsTypesLinks = Object.keys(projectByTypes).map((type, i) => (
+
+  const currentProjects = projects[currentType] || [];
+
+  const ProjectsTypesLinks = Object.keys(projects).map((type, i) => (
     <li
       key={type}
       id={`link-${i}`}
       onClick={(e) => {
         currentTypeSetter(type);
         setCurrentIndex(i);
-        e.currentTarget.id === `link-${i}`
-          ? e.currentTarget.classList.add("active")
-          : e.currentTarget.classList.remove("active");
       }}
       className={clsx(
         type === currentType ? "active" : "",
@@ -53,9 +58,10 @@ const OurWorks: FunctionComponent = () => {
         "type-link"
       )}
     >
-      {[[...type][0].toUpperCase(), ...type.slice(1)]}
+      {type === "all" ? "All" : type.charAt(0).toUpperCase() + type.slice(1)}
     </li>
   ));
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -64,23 +70,23 @@ const OurWorks: FunctionComponent = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
   useEffect(() => {
     if (indicator.current) {
-      indicator.current.style.width = `${
-        (document.querySelector(".type-link") as HTMLElement)?.offsetWidth
-      }px`;
-      indicator.current.style.gridColumn = `1 / -1`;
-      // حساب المسافة الصحيحة بناءً على currentIndex
-      indicator.current.style.left = `${
-        currentIndex *
-        (indicator.current.offsetWidth + (currentIndex !== 0 ? 20 : 0))
-      }px`;
+      const links = document.querySelectorAll(".type-link") as NodeListOf<HTMLElement>;
+      const activeLink = links[currentIndex];
+      if (activeLink) {
+        indicator.current.style.width = `${activeLink.offsetWidth}px`;
+        indicator.current.style.left = `${activeLink.offsetLeft}px`;
+      }
     }
-  }, [currentIndex]);
+  }, [currentIndex, currentType]);
+
   const [perimeter, setPerimeter] = useState({
     width: 350,
     height: 400,
   });
+
   useEffect(() => {
     switch (true) {
       case (windowWidth as number) < 320:
@@ -98,29 +104,26 @@ const OurWorks: FunctionComponent = () => {
       default:
     }
   }, [windowWidth]);
-  useEffect(() => {
-    return () => {
-      console.log(repos);
-    };
-  }, [repos]);
+
   useEffect(() => {
     const columns =
       (windowWidth as number) >= xl
         ? Math.floor(((windowWidth as number) * 0.85) / perimeter.width)
         : Math.floor((windowWidth as number) / perimeter.width);
-    const rows = Math.ceil(projects.length / columns);
+    const rows = Math.ceil(currentProjects.length / columns);
     setGridArea({
       columns,
       rows,
     });
-  }, [windowWidth, projects, perimeter]);
+  }, [windowWidth, currentProjects, perimeter]);
+
   const isPhoneScreen = useMemo(() => {
     return (windowWidth as number) <= xs;
   }, [windowWidth]);
 
   return (
     <section
-      className={clsx(styles["our-works"], styles["p-section"], "our-works", 'p-section')}
+      className={clsx(styles["our-works"], styles["p-section"], "our-works", "p-section")}
       id="our-works"
     >
       <h2
@@ -132,12 +135,6 @@ const OurWorks: FunctionComponent = () => {
       </h2>
       <ul
         className={clsx(styles["projects-type-links"])}
-        style={{
-          width: `${80 * Object.keys(projectByTypes).length}px`,
-          gridTemplateColumns: `repeat(${
-            Object.keys(projectByTypes).length
-          }, minmax(0, 1fr))`,
-        }}
         data-aos="fade-up"
         data-aos-delay={"150"}
       >
@@ -145,7 +142,7 @@ const OurWorks: FunctionComponent = () => {
         <div className={styles.indicator} ref={indicator}></div>
       </ul>
       <ProjectCard
-        currentType={currentType}
+        projects={currentProjects}
         isShowMore={isActiveBtn}
         rows={gridArea.rows as number}
         width={perimeter.width}
@@ -153,7 +150,7 @@ const OurWorks: FunctionComponent = () => {
         height={perimeter.height}
         isPhoneScreen={isPhoneScreen}
       ></ProjectCard>
-      {projects.length && (gridArea.rows as number) > 1 && (
+      {currentProjects.length && (gridArea.rows as number) > 1 && (
         <div
           className={styles["show-more"]}
           onClick={() => {

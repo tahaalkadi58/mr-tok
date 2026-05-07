@@ -1,20 +1,40 @@
 "use client";
-import { projectByTypes } from "@/lib/utils/project-schema";
+import { iProject } from "@/lib/types/app-type";
 import { formatDate } from "@/lib/utils/date-functions";
-import { FunctionComponent, useEffect, useRef } from "react";
+import { FunctionComponent, useRef } from "react";
 import styles from "./Main.module.scss";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faHtml5,
   faCss3Alt,
   faJs,
+  faReact,
 } from "@fortawesome/free-brands-svg-icons";
 
+const getTechIcons = (language: string | null | undefined): IconProp[] => {
+  if (!language) return [faReact];
+  switch (language.toLowerCase()) {
+    case "html":
+      return [faHtml5];
+    case "css":
+      return [faCss3Alt];
+    case "javascript":
+      return [faJs];
+    case "typescript":
+      return [faReact];
+    case "python":
+      return [faReact];
+    default:
+      return [faReact];
+  }
+};
+
 const ProjectCard: FunctionComponent<{
-  currentType: string;
+  projects: iProject[];
   isShowMore: boolean;
   rows: number;
   columns: number;
@@ -22,7 +42,7 @@ const ProjectCard: FunctionComponent<{
   width: number;
   isPhoneScreen: boolean;
 }> = ({
-  currentType,
+  projects,
   isShowMore,
   rows,
   height,
@@ -32,102 +52,93 @@ const ProjectCard: FunctionComponent<{
 }) => {
   const contentRef = useRef<HTMLDivElement | null>(null);
 
-  // تحديد البيانات مرة واحدة
-  const projects = projectByTypes[currentType] || [];
-
-  // استخدام تأثير لتحسين أداء الحسابات المتعلقة بالـ ref
-  useEffect(() => {
-    if (contentRef.current) {
-      document.documentElement.style.setProperty(
-        "--github-overlay-height",
-        contentRef.current.offsetHeight + "px"
-      );
-    }
-  }, []);
-
   return (
     <div
       className={clsx(styles["projects-cards"], isShowMore ? "show-full" : "")}
       style={{
         gridTemplateColumns: isPhoneScreen
-          ? `repeat(${columns}, minmax(${width}px, 1fr)`
-          : `repeat(${columns}, minmax(${width - 50}px, ${width}px)`,
+          ? `repeat(${columns}, minmax(${width}px, 1fr))`
+          : `repeat(${columns}, minmax(${width - 50}px, ${width}px))`,
         gridTemplateRows: `repeat(${rows}, minmax(${
           height - 50
         }px, ${height}px)`,
         overflow: "hidden",
-        maxHeight:
-          rows && isShowMore
+        maxHeight: isShowMore
             ? `${rows * height + 0.35 * window.innerHeight}px`
-            : `${height + 60}px`,
+            : `${height + 40}px`,
       }}
     >
-      {projects.map(({ name, id, createdAt, type }) => {
-        const [day, month, year] = formatDate(createdAt);
-        const enhancedName = name.split("-").join(" ").toUpperCase();
-        const formattedType = type.charAt(0).toUpperCase() + type.slice(1);
+      {projects.slice(0, isShowMore ? projects.length : 2).map(
+        ({ name, id, createdAt, type, githubUrl, description, language }) => {
+          const [day, month, year] = formatDate(createdAt);
+          const enhancedName = name.replace(/-/g, " ").toUpperCase();
+          const formattedType = type.charAt(0).toUpperCase() + type.slice(1);
+          const techIcons = getTechIcons(language);
 
-        return (
-          <div
-            className={styles["project-card"]}
-            key={id}
-            data-aos="zoom-in-up"
-            data-aos-delay={`${100 * id}`}
-            data-aos-once='false'
-          >
-            <div className={styles.date}>
-              <span className={styles.day}>{day}</span>
-              <span className={styles.month}>{month}</span>
-              <span className={styles.year}>{year}</span>
-            </div>
-            <div className={styles.data} ref={contentRef}>
-              <div className={styles.content}>
-                <span className={styles.type}>{formattedType}</span>
-                <h2 className={styles.title}>
-                  <a href="#">{enhancedName}</a>
+          return (
+            <div
+              className={styles["project-card"]}
+              key={id}
+              data-aos="zoom-in-up"
+              data-aos-delay={`${100 * id}`}
+              data-aos-once="false"
+            >
+              <div className={styles.date}>
+                <span className={styles.day}>{day}</span>
+                <span className={styles.month}>{month}</span>
+                <span className={styles.year}>{year}</span>
+              </div>
+              <div className={styles.data} ref={contentRef}>
+                <div className={styles.content}>
+                  <span className={styles.type}>{formattedType}</span>
+                  <h2 className={styles.title}>
+                    <a
+                      href={githubUrl || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {enhancedName}
+                    </a>
+                    <FontAwesomeIcon
+                      className={styles["fa-icon"]}
+                      icon={faLink}
+                    />
+                  </h2>
+                  <p className={styles.text}>
+                    {description
+                      ? description.slice(0, 40) + "..."
+                      : "No description available."}
+                  </p>
+                  <ul className={styles["menu-content"]}>
+                    {techIcons.map((icon, i) => (
+                      <li key={i}>
+                        <a href="#">
+                          <FontAwesomeIcon
+                            className={styles["fa-icon"]}
+                            icon={icon}
+                          />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className={styles["github-overlay"]}>
+                <a
+                  href={githubUrl || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FontAwesomeIcon
                     className={styles["fa-icon"]}
-                    icon={faLink}
+                    icon={faGithub}
                   />
-                </h2>
-                <p className={styles.text}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <ul className={styles["menu-content"]}>
-                  <li>
-                    <a href="#">
-                      <FontAwesomeIcon
-                        className={styles["fa-icon"]}
-                        icon={faHtml5}
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <FontAwesomeIcon
-                        className={styles["fa-icon"]}
-                        icon={faCss3Alt}
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <FontAwesomeIcon
-                        className={styles["fa-icon"]}
-                        icon={faJs}
-                      />
-                    </a>
-                  </li>
-                </ul>
+                </a>
               </div>
             </div>
-            <div className={styles["github-overlay"]}>
-              <FontAwesomeIcon className={styles["fa-icon"]} icon={faGithub} />
-            </div>
-          </div>
-        );
-      })}
+          );
+        },
+      )}
     </div>
   );
 };

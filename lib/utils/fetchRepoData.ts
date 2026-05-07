@@ -83,4 +83,33 @@ async function fetchRepoLanguages(
   }
 }
 
+export async function fetchRepoReadme(
+  owner: string,
+  repo: string,
+): Promise<string | null> {
+  try {
+    const url = `https://api.github.com/repos/${owner}/${repo}/readme`;
+    const response = await fetch(url, {
+      headers: {
+        Accept: "application/vnd.github.v3+json",
+      },
+    });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const data = await response.json();
+    const decoded = typeof atob === "function" ? atob(data.content) : Buffer.from(data.content, "base64").toString("utf-8");
+    const cleaned = decoded
+      .replace(/<<<<<<< .*[\s\S]*?=======/g, "")
+      .replace(/>>>>>>> .*/g, "")
+      .trim()
+      .replace(/\s+/g, " ");
+    return cleaned.slice(0, 40);
+  } catch {
+    return null;
+  }
+}
+
 export default fetchAllRepoLanguages;

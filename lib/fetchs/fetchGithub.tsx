@@ -19,7 +19,7 @@ async function fetchRepos(perPage: number) {
 
 export const RepoProvider = async ({
   children,
-  perPage = 5,
+  perPage = 100,
 }: {
   children: ReactNode;
   perPage?: number;
