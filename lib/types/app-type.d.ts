@@ -9,6 +9,7 @@ export interface iGithubRepo {
   language: string | null;
   description: string | null;
   html_url: string;
+  homepage: string | null;
   stargazers_count: number;
   fork: boolean;
 }
@@ -24,6 +25,7 @@ export interface iProject {
   createdAt: Date;
   id: number;
   githubUrl?: string;
+  homepageUrl?: string;
   description?: string;
   language?: string;
   stars?: number;

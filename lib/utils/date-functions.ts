@@ -1,4 +1,4 @@
-export function formatDate(Date: Date) {
+export function formatDate(Date: Date): [number, string, number] {
   if (isNaN(Date.getTime())) {
     throw new Error("Invalid Date format");
   }

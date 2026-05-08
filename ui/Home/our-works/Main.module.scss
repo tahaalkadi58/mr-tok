@@ -27,16 +27,17 @@ $black: #000;
     font-family: var(--font-blackjack);
     font-size: 3rem;
   }
-  .projects-type-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-    width: 100%;
-    position: relative;
+    .projects-type-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      width: 100%;
+      position: relative;
     .indicator {
       position: absolute;
       bottom: -6px;
@@ -259,6 +260,87 @@ $black: #000;
       .indicator {
         display: none;
       }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .our-works {
+    .section-title {
+      font-size: 2rem;
+    }
+    .projects-type-links {
+      gap: 8px;
+      .type-link {
+        font-size: 1.2rem;
+        padding: 0 0.5rem;
+      }
+      .indicator {
+        display: none;
+      }
+    }
+    .projects-cards {
+      width: 95%;
+      max-width: 95%;
+      padding: 1vh;
+      .project-card {
+        .data {
+          transform: translateY(0);
+          .content {
+            .title {
+              font-size: 0.9rem;
+            }
+            .text {
+              font-size: 0.8rem;
+              height: auto;
+            }
+            .menu-content {
+              li {
+                height: 2.5rem;
+              }
+              a {
+                font-size: 1.2rem;
+              }
+            }
+          }
+        }
+        .github-overlay {
+          top: 0;
+          opacity: 0.4;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .fa-icon {
+            font-size: 2rem;
+          }
+        }
+        .date {
+          padding: 0.3rem 1.2rem 1rem 0.3rem;
+          .day {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+    .show-more {
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767.98px) {
+  .our-works {
+    .projects-type-links {
+      .indicator {
+        display: none;
+      }
+    }
+    .projects-cards {
+      width: 95%;
+      max-width: 95%;
+      padding: 2vh;
     }
   }
 }

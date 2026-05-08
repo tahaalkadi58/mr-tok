@@ -14,6 +14,7 @@ export function mapGithubReposToProjects(repos: iGithubRepo[]): iProject[] {
         repoName: repo.name,
         createdAt: new Date(repo.created_at),
         githubUrl: repo.html_url,
+        homepageUrl: repo.homepage || undefined,
         description: repo.description || "",
         language: repo.language || "",
         stars: repo.stargazers_count,

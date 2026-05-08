@@ -88,20 +88,19 @@ const OurWorks: FunctionComponent = () => {
   });
 
   useEffect(() => {
-    switch (true) {
-      case (windowWidth as number) < 320:
-        setPerimeter({ width: 200, height: 400 });
-        break;
-      case (windowWidth as number) > s.min && (windowWidth as number) < md.max:
-        setPerimeter({ width: 300, height: 400 });
-        break;
-      case (windowWidth as number) > l.min && (windowWidth as number) < l.max:
-        setPerimeter({ width: 350, height: 400 });
-        break;
-      case (windowWidth as number) > xl:
-        setPerimeter({ width: 400, height: 400 });
-        break;
-      default:
+    const w = windowWidth as number;
+    if (w < 320) {
+      setPerimeter({ width: 200, height: 400 });
+    } else if (w <= xs) {
+      setPerimeter({ width: 280, height: 400 });
+    } else if (w <= s.max) {
+      setPerimeter({ width: 300, height: 400 });
+    } else if (w <= md.max) {
+      setPerimeter({ width: 320, height: 400 });
+    } else if (w <= l.max) {
+      setPerimeter({ width: 350, height: 400 });
+    } else {
+      setPerimeter({ width: 400, height: 400 });
     }
   }, [windowWidth]);
 

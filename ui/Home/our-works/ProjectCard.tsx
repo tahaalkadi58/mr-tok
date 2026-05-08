@@ -69,7 +69,7 @@ const ProjectCard: FunctionComponent<{
       }}
     >
       {projects.slice(0, isShowMore ? projects.length : 2).map(
-        ({ name, id, createdAt, type, githubUrl, description, language }) => {
+        ({ name, id, createdAt, type, githubUrl, homepageUrl, description, language }) => {
           const [day, month, year] = formatDate(createdAt);
           const enhancedName = name.replace(/-/g, " ").toUpperCase();
           const formattedType = type.charAt(0).toUpperCase() + type.slice(1);
@@ -93,7 +93,7 @@ const ProjectCard: FunctionComponent<{
                   <span className={styles.type}>{formattedType}</span>
                   <h2 className={styles.title}>
                     <a
-                      href={githubUrl || "#"}
+                      href={homepageUrl || githubUrl || "#"}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
