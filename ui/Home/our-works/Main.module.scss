@@ -65,15 +65,12 @@ $black: #000;
     justify-content: center;
     column-gap: 3vh;
     row-gap: 7vh;
-    // min-height: 30vh;
     transition:
-      height 0.5s,
-      min-height 0.5s;
+      height 0.5s;
     padding: 3vh;
     width: 80%;
     max-width: 85%;
     margin-top: 1.5rem;
-    transition: height 0.5s;
     .project-card {
       $text_black: color.adjust($black, $lightness: 50%);
       background-color: $white;
@@ -286,23 +283,23 @@ $black: #000;
       .project-card {
         .data {
           transform: translateY(0);
-          .content {
-            .title {
-              font-size: 0.9rem;
-            }
-            .text {
-              font-size: 0.8rem;
-              height: auto;
-            }
-            .menu-content {
-              li {
-                height: 2.5rem;
-              }
-              a {
-                font-size: 1.2rem;
-              }
-            }
-          }
+          // .content {
+          //   .title {
+          //     font-size: 0.9rem;
+          //   }
+          //   .text {
+          //     font-size: 0.8rem;
+          //     height: auto;
+          //   }
+          //   .menu-content {
+          //     li {
+          //       height: 2.5rem;
+          //     }
+          //     a {
+          //       font-size: 1.2rem;
+          //     }
+          //   }
+          // }
         }
         .github-overlay {
           top: 0;

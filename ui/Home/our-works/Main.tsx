@@ -32,7 +32,6 @@ const OurWorks: FunctionComponent = () => {
   const { repos } = useContext(RepoContext);
   const [windowWidth, setWindowWidth] = useState<number | null>(null);
   const { xs, s, md, l, xl } = windowMedia;
-
   const projects = useMemo(() => {
     const mapped = mapGithubReposToProjects(repos);
     return groupProjectsByType(mapped);
